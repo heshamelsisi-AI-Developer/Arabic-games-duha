@@ -15,7 +15,7 @@ interface GameItem {
  * - Multiple rounds with different words
  */
 
-const GAME_ITEMS: GameItem[] = [
+/*const GAME_ITEMS: GameItem[] = [
   { word: 'كتب', letters: ['ب', 'ك', 'ت'] },
   { word: 'قلم', letters: ['م', 'ق', 'ل'] },
   { word: 'باب', letters: ['ب', 'ا', 'ب'] },
@@ -24,7 +24,75 @@ const GAME_ITEMS: GameItem[] = [
   { word: 'ماء', letters: ['ء', 'ا', 'م'] },
   { word: 'ورقة', letters: ['ة', 'ق', 'ر', 'و'] },
   { word: 'بيت', letters: ['ت', 'ي', 'ب'] },
+];*/
+const GAME_ITEMS: GameItem[] = [
+  { word: 'كتب', letters: ['ت', 'ب', 'ك'], wordMeaning: 'كتب' },
+  { word: 'قلم', letters: ['ل', 'م', 'ق'], wordMeaning: 'قلم' },
+  { word: 'باب', letters: ['ا', 'ب', 'ب'], wordMeaning: 'باب' },
+  { word: 'نور', letters: ['و', 'ر', 'ن'], wordMeaning: 'نور' },
+  { word: 'حمار', letters: ['م', 'ر', 'ح', 'ا'], wordMeaning: 'حمار' },
+
+  { word: 'بيت', letters: ['ت', 'ب', 'ي'], wordMeaning: 'بيت' },
+  { word: 'شمس', letters: ['م', 'س', 'ش'], wordMeaning: 'شمس' },
+  { word: 'نجم', letters: ['ج', 'ن', 'م'], wordMeaning: 'نجم' },
+  { word: 'أرض', letters: ['ض', 'أ', 'ر'], wordMeaning: 'أرض' },
+  { word: 'سماء', letters: ['ء', 'س', 'م', 'ا'], wordMeaning: 'سماء' },
+
+  { word: 'ماء', letters: ['ء', 'م', 'ا'], wordMeaning: 'ماء' },
+  { word: 'قمر', letters: ['ر', 'م', 'ق'], wordMeaning: 'قمر' },
+  { word: 'نهر', letters: ['ه', 'ر', 'ن'], wordMeaning: 'نهر' },
+  { word: 'بحر', letters: ['ر', 'ب', 'ح'], wordMeaning: 'بحر' },
+  { word: 'جبل', letters: ['ل', 'ج', 'ب'], wordMeaning: 'جبل' },
+
+  { word: 'تفاح', letters: ['ح', 'ف', 'ت', 'ا'], wordMeaning: 'تفاح' },
+  { word: 'موز', letters: ['ز', 'م', 'و'], wordMeaning: 'موز' },
+  { word: 'عنب', letters: ['ن', 'ب', 'ع'], wordMeaning: 'عنب' },
+  { word: 'تمر', letters: ['ر', 'ت', 'م'], wordMeaning: 'تمر' },
+  { word: 'لبن', letters: ['ن', 'ل', 'ب'], wordMeaning: 'لبن' },
+
+  { word: 'سيارة', letters: ['ر', 'ة', 'س', 'ي', 'ا'], wordMeaning: 'سيارة' },
+  { word: 'قطار', letters: ['ر', 'ا', 'ق', 'ط'], wordMeaning: 'قطار' },
+  { word: 'طائرة', letters: ['ئ', 'ط', 'ا', 'ر', 'ة'], wordMeaning: 'طائرة' },
+  { word: 'دراجة', letters: ['ج', 'ة', 'ر', 'د', 'ا'], wordMeaning: 'دراجة' },
+  { word: 'شارع', letters: ['ع', 'ش', 'ا', 'ر'], wordMeaning: 'شارع' },
+  { word: 'ولد', letters: ['د', 'و', 'ل'], wordMeaning: 'ولد' },
+  { word: 'بنت', letters: ['ت', 'ب', 'ن'], wordMeaning: 'بنت' },
+  { word: 'عين', letters: ['ن', 'ع', 'ي'], wordMeaning: 'عين' },
+  { word: 'يد', letters: ['د', 'ي'], wordMeaning: 'يد' },
+  { word: 'فم', letters: ['م', 'ف'], wordMeaning: 'فم' },
+
+  { word: 'رأس', letters: ['س', 'ر', 'أ'], wordMeaning: 'رأس' },
+  { word: 'قطة', letters: ['ة', 'ق', 'ط'], wordMeaning: 'قطة' },
+  { word: 'كلب', letters: ['ب', 'ك', 'ل'], wordMeaning: 'كلب' },
+  { word: 'حصان', letters: ['ن', 'ص', 'ح', 'ا'], wordMeaning: 'حصان' },
+  { word: 'أسد', letters: ['د', 'أ', 'س'], wordMeaning: 'أسد' },
+
+  { word: 'فيل', letters: ['ل', 'ف', 'ي'], wordMeaning: 'فيل' },
+  { word: 'دجاجة', letters: ['ة', 'ج', 'د', 'ا', 'ج'], wordMeaning: 'دجاجة' },
+  { word: 'بطريق', letters: ['ق', 'ط', 'ر', 'ب', 'ي'], wordMeaning: 'بطريق' },
+  { word: 'سمك', letters: ['ك', 'س', 'م'], wordMeaning: 'سمك' },
+  { word: 'عصفور', letters: ['ر', 'ف', 'ع', 'ص', 'و'], wordMeaning: 'عصفور' },
+
+  { word: 'كتاب', letters: ['ب', 'ك', 'ت', 'ا'], wordMeaning: 'كتاب' },
+  { word: 'دفتر', letters: ['ر', 'ف', 'ت', 'د'], wordMeaning: 'دفتر' },
+  { word: 'مدرسة', letters: ['ة', 'ر', 'س', 'م', 'د'], wordMeaning: 'مدرسة' },
+  { word: 'فصل', letters: ['ل', 'ص', 'ف'], wordMeaning: 'فصل' },
+  { word: 'سبورة', letters: ['ة', 'ب', 'س', 'و', 'ر'], wordMeaning: 'سبورة' },
+
+  { word: 'كرسي', letters: ['ي', 'ك', 'ر', 'س'], wordMeaning: 'كرسي' },
+  { word: 'طاولة', letters: ['ة', 'ل', 'ا', 'و', 'ط'], wordMeaning: 'طاولة' },
+  { word: 'باب', letters: ['ب', 'ا', 'ب'], wordMeaning: 'باب' },
+  { word: 'مفتاح', letters: ['ح', 'ت', 'م', 'ا', 'ف'], wordMeaning: 'مفتاح' },
+  { word: 'ساعة', letters: ['ة', 'س', 'ا', 'ع'], wordMeaning: 'ساعة' },
+
+  { word: 'شجرة', letters: ['ة', 'ج', 'ش', 'ر'], wordMeaning: 'شجرة' },
+  { word: 'وردة', letters: ['ة', 'ر', 'و', 'د'], wordMeaning: 'وردة' },
+  { word: 'زهرة', letters: ['ة', 'ز', 'ه', 'ر'], wordMeaning: 'زهرة' },
+  { word: 'عشب', letters: ['ب', 'ع', 'ش'], wordMeaning: 'عشب' },
+  { word: 'غابة', letters: ['ة', 'غ', 'ا', 'ب'], wordMeaning: 'غابة' }
+  
 ];
+
 
 const LETTER_COLORS = ['#FFD93D', '#4ECDC4', '#B8A8FF', '#FF6B5B', '#FF9999', '#99CCFF'];
 

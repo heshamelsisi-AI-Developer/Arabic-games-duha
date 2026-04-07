@@ -25,7 +25,7 @@ export default function LetterPuzzle() {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   // Arabic words with missing letters
-  const WORDS = [
+  /*const WORDS = [
     { word: 'كتاب', missingIndex: 0 },
     { word: 'باب', missingIndex: 1 },
     { word: 'قمر', missingIndex: 2 },
@@ -36,6 +36,62 @@ export default function LetterPuzzle() {
     { word: 'شمس', missingIndex: 1 },
     { word: 'نجم', missingIndex: 2 },
     { word: 'أرض', missingIndex: 1 },
+  ];*/
+   const WORDS = [
+    { word: 'كتاب', missingIndex: 0 },
+    { word: 'باب', missingIndex: 1 },
+    { word: 'قمر', missingIndex: 2 },
+    { word: 'نور', missingIndex: 0 },
+    { word: 'ماء', missingIndex: 1 },
+    { word: 'حرف', missingIndex: 2 },
+    { word: 'بيت', missingIndex: 0 },
+    { word: 'شمس', missingIndex: 1 },
+    { word: 'نجم', missingIndex: 2 },
+    { word: 'أرض', missingIndex: 1 },
+
+    { word: 'ولد', missingIndex: 0 },
+    { word: 'بنت', missingIndex: 1 },
+    { word: 'عين', missingIndex: 2 },
+    { word: 'يد', missingIndex: 0 },
+    { word: 'فم', missingIndex: 1 },
+    { word: 'رأس', missingIndex: 2 },
+    { word: 'قلم', missingIndex: 0 },
+    { word: 'دفتر', missingIndex: 2 },
+    { word: 'مدرسة', missingIndex: 3 },
+    { word: 'فصل', missingIndex: 1 },
+
+    { word: 'بحر', missingIndex: 0 },
+    { word: 'نهر', missingIndex: 1 },
+    { word: 'جبل', missingIndex: 2 },
+    { word: 'سهل', missingIndex: 1 },
+    { word: 'وادي', missingIndex: 2 },
+    { word: 'شجرة', missingIndex: 3 },
+    { word: 'وردة', missingIndex: 1 },
+    { word: 'زهرة', missingIndex: 2 },
+    { word: 'عشب', missingIndex: 0 },
+    { word: 'غابة', missingIndex: 2 },
+
+    { word: 'تفاح', missingIndex: 0 },
+    { word: 'موز', missingIndex: 1 },
+    { word: 'عنب', missingIndex: 2 },
+    { word: 'تمر', missingIndex: 1 },
+    { word: 'خبز', missingIndex: 0 },
+    { word: 'لبن', missingIndex: 1 },
+    { word: 'ماء', missingIndex: 2 },
+    { word: 'عسل', missingIndex: 0 },
+    { word: 'سكر', missingIndex: 1 },
+    { word: 'ملح', missingIndex: 2 },
+
+    { word: 'سيارة', missingIndex: 0 },
+    { word: 'قطار', missingIndex: 2 },
+    { word: 'طائرة', missingIndex: 1 },
+    { word: 'دراجة', missingIndex: 3 },
+    { word: 'شارع', missingIndex: 1 },
+    { word: 'طريق', missingIndex: 2 },
+    { word: 'مدينة', missingIndex: 0 },
+    { word: 'قرية', missingIndex: 2 },
+    { word: 'بيت', missingIndex: 1 },
+    { word: 'باب', missingIndex: 0 }
   ];
 
   // Generate new puzzle

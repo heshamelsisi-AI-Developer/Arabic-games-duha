@@ -17,16 +17,154 @@ interface GameItem {
 
 const GAME_ITEMS: GameItem[] = [
   {
-    word: 'أ_ب',
+    word: 'رنب_',
+    missingIndex: 2,
+    options: ['أ', 'ب', 'ت'],
+    correctAnswer: 'أ',
+  },
+  {
+    word: '_ يت',
+    missingIndex: 0,
+    options: ['ب', 'ن', 'س'],
+    correctAnswer: 'ب',
+  },
+  {
+    word: 'ك_اب',
     missingIndex: 1,
-    options: ['ر', 'ل', 'ن'],
+    options: ['ت', 'ب', 'م'],
+    correctAnswer: 'ت',
+  },
+  {
+    word: 'وز_',
+    missingIndex: 2,
+    options: ['م', 'ب', 'ن'],
+    correctAnswer: 'م',
+  },
+  {
+    word: '_مل',
+    missingIndex: 0,
+    options: ['ج', 'ر', 'ح'],
+    correctAnswer: 'ح',
+  },
+  {
+    word: 'ق_م',
+    missingIndex: 1,
+    options: ['ل', 'ر', 'ب'],
+    correctAnswer: 'ل',
+  },
+  {
+    word: 'مك_',
+    missingIndex: 2,
+    options: ['س', 'د', 'ر'],
+    correctAnswer: 'س',
+  },
+  {
+    word: '_رم',
+    missingIndex: 0,
+    options: ['ك', 'ن', 'ل'],
+    correctAnswer: 'ل',
+  },
+  {
+    word: 'ش_س',
+    missingIndex: 1,
+    options: ['م', 'ن', 'ب'],
+    correctAnswer: 'م',
+  },
+  {
+    word: 'وت_',
+    missingIndex: 2,
+    options: ['ح', 'خ', 'ج'],
+    correctAnswer: 'ح',
+  },
+  {
+    word: '_هر',
+    missingIndex: 0,
+    options: ['ه', 'ل', 'م'],
+    correctAnswer: 'ه',
+  },
+  {
+    word: 'أر_',
+    missingIndex: 2,
+    options: ['ف', 'ق', 'ك'],
+    correctAnswer: 'ف',
+  },
+  {
+    word: 'اب_',
+    missingIndex: 2,
+    options: ['ب', 'ت', 'م'],
+    correctAnswer: 'ب',
+  },
+  {
+    word: 'د_ب',
+    missingIndex: 1,
+    options: ['ب', 'ي', 'و'],
+    correctAnswer: 'ب',
+  },
+  {
+    word: 'أس_',
+    missingIndex: 2,
+    options: ['ر', 'ز', 'س'],
     correctAnswer: 'ر',
   },
   {
-    word: 'ب_ت',
+    word: '_يف',
+    missingIndex: 0,
+    options: ['س', 'ن', 'ب'],
+    correctAnswer: 'س',
+  },
+  {
+    word: 'ائر_',
+    missingIndex: 2,
+    options: ['ط', 'ظ', 'د'],
+    correctAnswer: 'ط',
+  },
+  {
+    word: '_ين',
+    missingIndex: 0,
+    options: ['ع', 'م', 'ر'],
+    correctAnswer: 'ع',
+  },
+  {
+    word: 'ل_ب',
     missingIndex: 1,
-    options: ['ا', 'ي', 'ع'],
+    options: ['ع', 'و', 'ي'],
+    correctAnswer: 'ع',
+  },
+  {
+    word: 'هب_',
+    missingIndex: 2,
+    options: ['ذ', 'ز', 'د'],
+    correctAnswer: 'ذ',
+  },
+  {
+    word: '_ور',
+    missingIndex: 0,
+    options: ['ث', 'ن', 'م'],
+    correctAnswer: 'ث',
+  },
+  {
+    word: 'غ_م',
+    missingIndex: 1,
+    options: ['ي', 'و', 'ا'],
     correctAnswer: 'ي',
+  },
+  {
+    word: 'بر_',
+    missingIndex: 2,
+    options: ['ص', 'ض', 'س'],
+    correctAnswer: 'ص',
+  },
+  {
+    word: '_رب',
+    missingIndex: 0,
+    options: ['ض', 'م', 'ن'],
+    correctAnswer: 'ض',
+  },
+  {
+    word: 'ز_ر',
+    missingIndex: 1,
+    options: ['ه', 'ي', 'و'],
+    correctAnswer: 'ه',
   },
   {
     word: 'ك_ب',
@@ -35,19 +173,42 @@ const GAME_ITEMS: GameItem[] = [
     correctAnswer: 'ت',
   },
   {
-    word: 'م_ز',
-    missingIndex: 1,
-    options: ['ي', 'و', 'ا'],
-    correctAnswer: 'و',
-  },
-  {
     word: 'ج_ل',
     missingIndex: 1,
     options: ['م', 'ن', 'د'],
     correctAnswer: 'م',
   },
+  {
+    word: 'س_م',
+    missingIndex: 1,
+    options: ['ل', 'ي', 'ا'],
+    correctAnswer: 'ل',
+  },
+  {
+    word: 'ن_ر',
+    missingIndex: 1,
+    options: ['ه', 'م', 'ا'],
+    correctAnswer: 'ه',
+  },
+  {
+    word: 'ف_ر',
+    missingIndex: 1,
+    options: ['أ', 'و', 'ي'],
+    correctAnswer: 'أ',
+  },
+  {
+    word: 'ر_س',
+    missingIndex: 1,
+    options: ['أ', 'و', 'ي'],
+    correctAnswer: 'أ',
+  },
+  {
+    word: 'س_ف',
+    missingIndex: 1,
+    options: ['ي', 'و', 'ا'],
+    correctAnswer: 'ي',
+  },
 ];
-
 export default function MissingLetter() {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null);

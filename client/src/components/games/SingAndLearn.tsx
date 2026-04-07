@@ -17,38 +17,40 @@ interface GameItem {
  */
 
 const GAME_ITEMS: GameItem[] = [
-  {
-    letter: 'ا',
-    letterName: 'ألف',
-    emoji: '🍎',
-    song: 'ألف... ألف... أرنب يركض في الحقل',
-  },
-  {
-    letter: 'ب',
-    letterName: 'باء',
-    emoji: '🍌',
-    song: 'باء... باء... بطة تسبح في الماء',
-  },
-  {
-    letter: 'ت',
-    letterName: 'تاء',
-    emoji: '🍅',
-    song: 'تاء... تاء... تمساح يسير ببطء',
-  },
-  {
-    letter: 'ث',
-    letterName: 'ثاء',
-    emoji: '🐯',
-    song: 'ثاء... ثاء... ثعلب ذكي وماهر',
-  },
-  {
-    letter: 'ج',
-    letterName: 'جيم',
-    emoji: '🥕',
-    song: 'جيم... جيم... جمل يمشي في الصحراء',
-  },
-];
+  { letter: 'ا', letterName: 'ألف', emoji: '🐰', song: 'ألف... ألف... أرنب يركض في الحقل' },
+  { letter: 'ب', letterName: 'باء', emoji: '🦆', song: 'باء... باء... بطة تسبح في الماء' },
+  { letter: 'ت', letterName: 'تاء', emoji: '🐊', song: 'تاء... تاء... تمساح يسير ببطء' },
+  { letter: 'ث', letterName: 'ثاء', emoji: '🦊', song: 'ثاء... ثاء... ثعلب ذكي وماهر' },
+  { letter: 'ج', letterName: 'جيم', emoji: '🐪', song: 'جيم... جيم... جمل يمشي في الصحراء' },
 
+  { letter: 'ح', letterName: 'حاء', emoji: '🐎', song: 'حاء... حاء... حصان يجري بسرعة' },
+  { letter: 'خ', letterName: 'خاء', emoji: '🍞', song: 'خاء... خاء... خبز ساخن ولذيذ' },
+  { letter: 'د', letterName: 'دال', emoji: '🐻', song: 'دال... دال... دب لطيف يحب العسل' },
+  { letter: 'ذ', letterName: 'ذال', emoji: '🐺', song: 'ذال... ذال... ذئب يعيش في الغابة' },
+  { letter: 'ر', letterName: 'راء', emoji: '🌹', song: 'راء... راء... وردة جميلة في الحديقة' },
+
+  { letter: 'ز', letterName: 'زاي', emoji: '🦒', song: 'زاي... زاي... زرافة طويلة الرقبة' },
+  { letter: 'س', letterName: 'سين', emoji: '🐟', song: 'سين... سين... سمكة تسبح في البحر' },
+  { letter: 'ش', letterName: 'شين', emoji: '☀️', song: 'شين... شين... شمس تضيء السماء' },
+  { letter: 'ص', letterName: 'صاد', emoji: '🦅', song: 'صاد... صاد... صقر يطير عاليًا' },
+  { letter: 'ض', letterName: 'ضاد', emoji: '🐸', song: 'ضاد... ضاد... ضفدع يقفز في الماء' },
+
+  { letter: 'ط', letterName: 'طاء', emoji: '✈️', song: 'طاء... طاء... طائرة تطير في السماء' },
+  { letter: 'ظ', letterName: 'ظاء', emoji: '🦌', song: 'ظاء... ظاء... ظبي سريع في الصحراء' },
+  { letter: 'ع', letterName: 'عين', emoji: '👁️', song: 'عين... عين... عين ترى الأشياء' },
+  { letter: 'غ', letterName: 'غين', emoji: '☁️', song: 'غين... غين... غيمة تمطر في السماء' },
+  { letter: 'ف', letterName: 'فاء', emoji: '🐘', song: 'فاء... فاء... فيل ضخم وقوي' },
+
+  { letter: 'ق', letterName: 'قاف', emoji: '🌙', song: 'قاف... قاف... قمر ينير الليل' },
+  { letter: 'ك', letterName: 'كاف', emoji: '📚', song: 'كاف... كاف... كتاب مليء بالعلم' },
+  { letter: 'ل', letterName: 'لام', emoji: '🦁', song: 'لام... لام... ليث قوي في الغابة' },
+  { letter: 'م', letterName: 'ميم', emoji: '🍌', song: 'ميم... ميم... موز أصفر لذيذ' },
+  { letter: 'ن', letterName: 'نون', emoji: '⭐', song: 'نون... نون... نجم يلمع في السماء' },
+
+  { letter: 'ه', letterName: 'هاء', emoji: '🌙', song: 'هاء... هاء... هلال جميل في السماء' },
+  { letter: 'و', letterName: 'واو', emoji: '🌹', song: 'واو... واو... وردة حمراء جميلة' },
+  { letter: 'ي', letterName: 'ياء', emoji: '🕊️', song: 'ياء... ياء... يمامة تطير في السماء' }
+];
 export default function SingAndLearn() {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
