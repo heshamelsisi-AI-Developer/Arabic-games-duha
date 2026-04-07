@@ -120,7 +120,7 @@ export default function FileUploadManager({ onBack }: FileUploadManagerProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF] flex flex-col">
       {/* Header */}
-      <header className="bg-white/40 backdrop-blur-md border-b border-[#E8D4E8] py-4 sticky top-0 z-10">
+      <header className="bg-white/40 backdrop-blur-md py-4 sticky top-0 z-10">
         <div className="container flex items-center justify-between">
           <button
             onClick={onBack}
@@ -232,7 +232,7 @@ export default function FileUploadManager({ onBack }: FileUploadManagerProps) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white/40 backdrop-blur-sm border-t border-[#E8D4E8] py-4 mt-auto">
+      <footer className="bg-white/40 backdrop-blur-sm py-4 mt-auto">
         <div className="container text-center">
           <p className="text-[#7A6B8F] font-poppins text-sm">
             إجمالي الملفات: {files.length}

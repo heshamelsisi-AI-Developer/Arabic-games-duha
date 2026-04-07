@@ -133,8 +133,25 @@
     * {
         @apply border-border outline-ring/50;
     }
+    /* Standard confetti spark - kept for backward compatibility */
     .confetti-spark {
         animation: confetti-fall 1.2s ease-out infinite;
+    }
+    /* Large confetti - bouncy and slower */
+    .confetti-spark-large {
+        animation: confetti-bounce-large 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+    /* Medium confetti - medium speed */
+    .confetti-spark-medium {
+        animation: confetti-bounce-medium 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    }
+    /* Small confetti - fast and erratic */
+    .confetti-spark-small {
+        animation: confetti-spin-fast 1.2s ease-out infinite;
+    }
+    /* Emoji pop animation */
+    .confetti-emoji-pop {
+        animation: emoji-pop 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
     }
     @keyframes confetti-fall {
         0% {
@@ -156,6 +173,80 @@
         100% {
             opacity: 0.7;
             transform: translateY(0) rotate(90deg) scale(1);
+        }
+    }
+    @keyframes confetti-bounce-large {
+        0%,
+        100% {
+            opacity: 0.9;
+            transform: translateY(0) rotate(0deg) scale(1);
+        }
+        25% {
+            opacity: 1;
+            transform: translateY(-25px) rotate(45deg) scale(1.1);
+        }
+        50% {
+            opacity: 0.95;
+            transform: translateY(10px) rotate(90deg) scale(0.95);
+        }
+        75% {
+            opacity: 1;
+            transform: translateY(-15px) rotate(180deg) scale(1.05);
+        }
+    }
+    @keyframes confetti-bounce-medium {
+        0%,
+        100% {
+            opacity: 0.85;
+            transform: translateY(0) rotate(0deg) scale(1);
+        }
+        25% {
+            opacity: 1;
+            transform: translateY(-20px) rotate(60deg) scale(1.05);
+        }
+        50% {
+            opacity: 0.9;
+            transform: translateY(8px) rotate(120deg) scale(0.9);
+        }
+        75% {
+            opacity: 1;
+            transform: translateY(-10px) rotate(200deg) scale(1);
+        }
+    }
+    @keyframes confetti-spin-fast {
+        0% {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg) scale(1);
+        }
+        33% {
+            opacity: 1;
+            transform: translateY(-15px) rotate(180deg) scale(1.1);
+        }
+        66% {
+            opacity: 0.8;
+            transform: translateY(5px) rotate(270deg) scale(0.8);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(25px) rotate(360deg) scale(0.5);
+        }
+    }
+    @keyframes emoji-pop {
+        0% {
+            opacity: 0;
+            transform: scale(0) rotate(-180deg);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.2) rotate(10deg);
+        }
+        75% {
+            opacity: 1;
+            transform: scale(1) rotate(-5deg);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(0.8) rotate(180deg) translateY(40px);
         }
     }
     body {

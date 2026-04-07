@@ -79,18 +79,28 @@ export default function GamesPage({ onBack }: GamesPageProps) {
 
   if (selectedGame && GameComponent) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF]">
+      <div className="min-h-screen bg-gradient-to-b from-[#F5F5DC] to-[#E8DCC8] flex flex-col">
         {/* Header */}
-        <header className="bg-white/40 backdrop-blur-md border-b border-[#E8D4E8] py-4 sticky top-0 z-10">
+        <header className="bg-gradient-to-b from-[#F5F5DC] to-[#E8DCC8] backdrop-blur-md py-2 relative overflow-hidden">
+          {/* Animated balloons and stars */}
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute left-8 top-8 text-4xl animate-float-slow">🎈</div>
+            <div className="absolute left-1/4 top-12 text-4xl animate-float-slow animation-delay-200">🌟</div>
+            <div className="absolute right-16 top-16 text-4xl animate-float-slow animation-delay-400">🎉</div>
+            <div className="absolute left-3/4 top-10 text-4xl animate-float-slow animation-delay-600">🎊</div>
+            <div className="absolute right-8 bottom-8 text-4xl animate-float-slow animation-delay-800">✨</div>
+            <div className="absolute left-1/2 bottom-12 text-4xl animate-float-slow animation-delay-1000">🎈</div>
+            <div className="absolute left-16 bottom-16 text-4xl animate-float-slow animation-delay-1200">🌈</div>
+          </div>
           <div className="container flex items-center justify-between">
             <button
               onClick={() => setSelectedGame(null)}
-              className="flex items-center gap-2 text-[#2D1B3D] hover:text-[#FF6B5B] transition-colors font-bold font-poppins"
+              className="flex items-center gap-2 text-[#5D4E37] hover:text-[#8B4513] transition-colors font-bold font-poppins"
             >
               <ArrowLeft size={20} />
               الرجوع
             </button>
-            <h1 className="text-2xl font-bold text-[#2D1B3D]">
+            <h1 className="text-xl font-bold text-[#5D4E37]">
               {currentStage?.nameArabic}
             </h1>
             <div className="w-20"></div>
@@ -98,7 +108,7 @@ export default function GamesPage({ onBack }: GamesPageProps) {
         </header>
 
         {/* Game */}
-        <main className="container py-8">
+        <main className="flex-1 container py-4">
           <GameComponent />
         </main>
       </div>
@@ -106,27 +116,27 @@ export default function GamesPage({ onBack }: GamesPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#F5F5DC] to-[#D2B48C] flex flex-col">
       {/* Header */}
-      <header className="bg-white/40 backdrop-blur-md border-b border-[#E8D4E8] py-4">
+      <header className="bg-gradient-to-b from-[#F5F5DC] to-[#D2B48C] backdrop-blur-md py-2 relative overflow-hidden">
         <div className="container flex items-center justify-between">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 text-[#2D1B3D] hover:text-[#FF6B5B] transition-colors font-bold font-poppins"
+            className="flex items-center gap-2 text-[#5D4E37] hover:text-[#8B4513] transition-colors font-bold font-poppins"
           >
             <ArrowLeft size={20} />
             الرجوع
           </button>
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-[#2D1B3D]">The Duha Way</h1>
-            <p className="text-sm text-[#7A6B8F]">🎮 الألعاب التفاعلية</p>
+            <h1 className="text-2xl font-bold text-[#5D4E37]">The Duha Way</h1>
+            <p className="text-sm text-[#8B4513]">🎮 الألعاب التفاعلية</p>
           </div>
           <div className="w-20"></div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 container py-8">
+      <main className="flex-1 container py-4">
         {/* Stages Tabs */}
         <div className="mb-8 overflow-x-auto pb-2">
           <div className="flex gap-3 min-w-max">

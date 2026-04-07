@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
 import CelebrationConfetti from './CelebrationConfetti';
+import SadFeedback from './SadFeedback';
 
 interface GameItem {
   word: string;
@@ -24,8 +25,8 @@ const GAME_ITEMS: GameItem[] = [
     correctAnswer: 'أ',
   },
   {
-    word: '_ يت',
-    missingIndex: 0,
+    word: 'يت _ ',
+    missingIndex: 3,
     options: ['ب', 'ن', 'س'],
     correctAnswer: 'ب',
   },
@@ -108,8 +109,8 @@ const GAME_ITEMS: GameItem[] = [
     correctAnswer: 'ر',
   },
   {
-    word: '_يف',
-    missingIndex: 0,
+    word: 'يف _',
+    missingIndex: 3,
     options: ['س', 'ن', 'ب'],
     correctAnswer: 'س',
   },
@@ -214,6 +215,7 @@ export default function MissingLetter() {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [showSadFeedback, setShowSadFeedback] = useState(false);
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(0);
 
@@ -234,10 +236,14 @@ export default function MissingLetter() {
       }, 1500);
     } else {
       setFeedback('incorrect');
+      setShowSadFeedback(true);
       setTimeout(() => {
-        setSelectedLetter(null);
-        setFeedback(null);
-      }, 1000);
+        setShowSadFeedback(false);
+        setTimeout(() => {
+          setSelectedLetter(null);
+          setFeedback(null);
+        }, 300);
+      }, 1500);
     }
   };
 
@@ -264,11 +270,13 @@ export default function MissingLetter() {
     setCurrentItemIndex(0);
     setSelectedLetter(null);
     setFeedback(null);
+    setShowSadFeedback(false);
   };
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-[70vh] gap-8">
       {feedback === 'correct' && <CelebrationConfetti />}
+      {showSadFeedback && <SadFeedback />}
       {/* Score Display */}
       <div className="flex gap-8 mb-4">
         <div className="bg-white rounded-2xl px-6 py-3 shadow-md border-2 border-[#4ECDC4]">

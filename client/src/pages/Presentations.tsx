@@ -49,7 +49,7 @@ export default function Presentations({ onBack }: PresentationsProps) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF] flex flex-col">
         {/* Header */}
-        <header className="bg-white/40 backdrop-blur-md border-b border-[#E8D4E8] py-4">
+        <header className="bg-white/40 backdrop-blur-md py-4">
           <div className="container flex items-center justify-between">
             <button
               onClick={() => setSelectedLetterIndex(null)}
@@ -142,7 +142,7 @@ export default function Presentations({ onBack }: PresentationsProps) {
         </main>
 
         {/* Footer */}
-        <footer className="bg-white/40 backdrop-blur-sm border-t border-[#E8D4E8] py-4">
+        <footer className="bg-white/40 backdrop-blur-sm py-4">
           <div className="container text-center">
             <p className="text-[#7A6B8F] font-poppins text-sm">
               الدروس المكتملة: {completedLetters.size} / {ARABIC_LETTERS.length}
@@ -157,7 +157,7 @@ export default function Presentations({ onBack }: PresentationsProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF] flex flex-col">
       {/* Header */}
-      <header className="bg-white/40 backdrop-blur-md border-b border-[#E8D4E8] py-4">
+      <header className="bg-white/40 backdrop-blur-md py-4">
         <div className="container flex items-center justify-between">
           <button
             onClick={onBack}
@@ -249,7 +249,7 @@ export default function Presentations({ onBack }: PresentationsProps) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white/40 backdrop-blur-sm border-t border-[#E8D4E8] py-4 mt-auto">
+      <footer className="bg-white/40 backdrop-blur-sm py-4 mt-auto">
         <div className="container text-center">
           <p className="text-[#7A6B8F] font-poppins text-sm">
             🌟 استمتع بتعلم الحروف العربية!

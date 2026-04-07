@@ -1,4 +1,4 @@
-import { useState } from 'react';
+/*import { useState } from 'react';
 import Landing from '@/pages/Landing';
 import GamesPage from '@/pages/GamesPage';
 import SimplePresentations from '@/pages/SimplePresentations';
@@ -13,7 +13,7 @@ import SimplePresentations from '@/pages/SimplePresentations';
  * - Cairo font for headings, Poppins for body
  */
 
-export default function Home() {
+/*export default function Home() {
   const [currentSection, setCurrentSection] = useState<
     'landing' | 'presentations' | 'games'
   >('landing');
@@ -33,6 +33,53 @@ export default function Home() {
   }
 
   // Games section
+  if (currentSection === 'games') {
+    return (
+      <div>
+        <button
+          onClick={() => setCurrentSection('landing')}
+          className="fixed top-4 left-4 px-4 py-2 bg-[#B8A8FF] text-white rounded-lg font-poppins z-50"
+        >
+          ← رجوع
+        </button>
+        <GamesPage onBack={() => setCurrentSection('landing')} />
+      </div>
+    );
+  }
+
+  return null;
+};*/
+import { useState } from 'react';
+import Landing from '@/pages/Landing';
+import GamesPage from '@/pages/GamesPage';
+import SimplePresentations from '@/pages/SimplePresentations';
+
+export default function Home() {
+  const [currentSection, setCurrentSection] = useState<
+    'landing' | 'presentations' | 'games'
+  >('landing');
+
+  // Landing page
+  if (currentSection === 'landing') {
+    return (
+      <Landing
+        onSelectSection={(section) => {
+          // ❌ منع الشروح
+          if (section === 'presentations') return;
+
+          // ✅ الألعاب بس
+          setCurrentSection(section);
+        }}
+      />
+    );
+  }
+
+  // Presentations (مش هتتفتح أصلاً)
+  if (currentSection === 'presentations') {
+    return <SimplePresentations onBack={() => setCurrentSection('landing')} />;
+  }
+
+  // Games
   if (currentSection === 'games') {
     return (
       <div>

@@ -151,7 +151,17 @@ export default function SimplePresentations({ onBack }: SimplePresentationsProps
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-purple-50 p-4">
       {/* Header */}
-      <div className="max-w-6xl mx-auto mb-8">
+      <div className="max-w-6xl mx-auto mb-8 relative overflow-hidden">
+        {/* Animated balloons and stars */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-8 top-8 text-4xl animate-float-slow">🎈</div>
+          <div className="absolute left-1/4 top-12 text-4xl animate-float-slow animation-delay-200">🌟</div>
+          <div className="absolute right-16 top-16 text-4xl animate-float-slow animation-delay-400">🎉</div>
+          <div className="absolute left-3/4 top-10 text-4xl animate-float-slow animation-delay-600">🎊</div>
+          <div className="absolute right-8 bottom-8 text-4xl animate-float-slow animation-delay-800">✨</div>
+          <div className="absolute left-1/2 bottom-12 text-4xl animate-float-slow animation-delay-1000">🎈</div>
+          <div className="absolute left-16 bottom-16 text-4xl animate-float-slow animation-delay-1200">🌈</div>
+        </div>
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             {onBack && (
