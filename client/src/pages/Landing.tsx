@@ -18,7 +18,7 @@ export default function Landing({ onSelectSection }: LandingProps) {
     <div className="h-screen bg-gradient-to-b from-[#F5F5DC] to-[#D2B48C] flex flex-col overflow-hidden">
       {/* Header */}
       <header className="bg-gradient-to-b from-[#F5F5DC] to-[#D2B48C] backdrop-blur-md py-8 relative overflow-visible">
-        <div className="pointer-events-none absolute inset-0">
+        {/*<div className="pointer-events-none absolute inset-0">
           <div className="absolute left-8 top-8 text-4xl animate-float-slow">🎈</div>
           <div className="absolute left-1/2 top-12 text-4xl animate-float-slow animation-delay-200">🌟</div>
           <div className="absolute right-16 top-16 text-4xl animate-float-slow animation-delay-400">🎉</div>
@@ -28,7 +28,7 @@ export default function Landing({ onSelectSection }: LandingProps) {
           <div className="absolute right-1/3 bottom-16 text-4xl animate-float-slow animation-delay-1200">🌈</div>
         </div>
         <div className="absolute left-6 top-4 text-3xl animate-float-slow">✨</div>
-        <div className="absolute right-8 top-6 text-3xl animate-float-slow animation-delay-200">🌟</div>
+        <div className="absolute right-8 top-6 text-3xl animate-float-slow animation-delay-200">🌟</div>*/}
         <div className="container flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="text-4xl animate-bounce">🎮</div>

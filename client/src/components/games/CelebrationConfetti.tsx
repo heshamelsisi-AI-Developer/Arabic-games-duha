@@ -21,7 +21,7 @@ export default function CelebrationConfetti() {
       <span className="absolute w-2 h-2 rounded-full bg-[#4ECDC4] confetti-spark-small" style={{ left: '50%', top: '5%', animationDelay: '0.2s' }} />
       <span className="absolute w-2 h-2 rounded-full bg-[#B8A8FF] confetti-spark-small" style={{ left: '30%', top: '8%', animationDelay: '0.4s' }} />
       
-      {/* Emoji celebration */}
+      /*{/* Emoji celebration */}
       <span className="absolute text-3xl confetti-emoji-pop" style={{ left: '50%', top: '20%', transform: 'translateX(-50%)' }}>🎉</span>
       <span className="absolute text-2xl confetti-emoji-pop" style={{ left: '25%', top: '40%', animationDelay: '0.15s' }}>🎊</span>
       <span className="absolute text-2xl confetti-emoji-pop" style={{ left: '75%', top: '35%', animationDelay: '0.25s' }}>⭐</span>
