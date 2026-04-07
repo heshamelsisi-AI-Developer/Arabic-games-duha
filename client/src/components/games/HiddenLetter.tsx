@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
+import CelebrationConfetti from './CelebrationConfetti';
 
 interface LetterPosition {
   letter: string;
@@ -166,7 +167,8 @@ export default function HiddenLetter() {
   const isRoundComplete = foundCount === totalTargets;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+    <div className="relative flex flex-col items-center justify-center min-h-screen gap-4">
+      {isRoundComplete && <CelebrationConfetti />}
       {/* Header */}
       <div className="w-full bg-white/60 backdrop-blur-md border-b-2 border-[#E8D4E8] p-4">
         <div className="container flex justify-between items-center">

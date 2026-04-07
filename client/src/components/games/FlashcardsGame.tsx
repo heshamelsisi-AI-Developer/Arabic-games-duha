@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Volume2, RotateCcw } from 'lucide-react';
+import CelebrationConfetti from './CelebrationConfetti';
 import { ARABIC_LETTERS, getRandomLetters, ArabicLetter } from '@/lib/arabicLetters';
 
 /**
@@ -80,7 +81,8 @@ export default function FlashcardsGame() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] gap-8">
+    <div className="relative flex flex-col items-center justify-center min-h-[70vh] gap-8">
+      {feedback === 'correct' && <CelebrationConfetti />}
       {/* Score Display */}
       <div className="flex gap-8 mb-4">
         <div className="bg-white rounded-2xl px-6 py-3 shadow-md border-2 border-[#4ECDC4]">

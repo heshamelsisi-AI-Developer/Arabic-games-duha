@@ -1,6 +1,33 @@
 import React, { useState } from 'react';
 import { playUISound, playLetterSound } from '@/lib/audioManager';
 
+const sadMessages = [
+  '😢 أوه! حاول تاني، انت قريب جداً.',
+  '🥺 لا تقلق.. جرب مرة ثانية.',
+  '😿 للأسف ده مش صح، ممكن تعيد المحاولة؟',
+];
+
+const successMessages = [
+  '🎉 ممتاز! إجابة صحيحة.',
+  '✨ أحسنت! كده تمام.',
+  '👏 رائع! استمر يا بطل.',
+];
+
+const getRandomMessage = (messages: string[]) =>
+  messages[Math.floor(Math.random() * messages.length)];
+
+function CelebrationConfetti() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <span className="absolute w-3 h-3 rounded-full bg-[#FFB74D] animate-confetti-spark" style={{ left: '15%', top: '10%' }} />
+      <span className="absolute w-3 h-3 rounded-full bg-[#4ECDC4] animate-confetti-spark" style={{ left: '30%', top: '18%' }} />
+      <span className="absolute w-3 h-3 rounded-full bg-[#FF6B5B] animate-confetti-spark" style={{ left: '60%', top: '12%' }} />
+      <span className="absolute w-2 h-5 rounded-full bg-[#B8A8FF] animate-confetti-spark" style={{ left: '45%', top: '24%' }} />
+      <span className="absolute w-2 h-5 rounded-full bg-[#FFD93D] animate-confetti-spark" style={{ left: '70%', top: '22%' }} />
+    </div>
+  );
+}
+
 // ============================================================================
 // Letter Matching Game
 // ============================================================================
@@ -48,22 +75,36 @@ export function LetterMatchingGame() {
 ];
 
   const [current, setCurrent] = useState(0);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [feedback, setFeedback] = useState<'success' | 'error' | null>(null);
+  const [feedbackText, setFeedbackText] = useState('');
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const handleAnswer = (answer: boolean) => {
     const isCorrect = answer === pairs[current].match;
     if (isCorrect) {
       setScore(score + 1);
+      setWrongAttempts(0);
+      setFeedback('success');
+      setFeedbackText(getRandomMessage(successMessages));
+      setShowConfetti(true);
       playUISound('success');
+      const nextIndex = current + 1;
+      if (nextIndex >= pairs.length) {
+        setRound(round + 1);
+        setCurrent(0);
+      } else {
+        setCurrent(nextIndex);
+      }
     } else {
+      setWrongAttempts(wrongAttempts + 1);
+      setFeedback('error');
+      setFeedbackText(getRandomMessage(sadMessages));
       playUISound('error');
     }
-    const nextIndex = current + 1;
-    if (nextIndex >= pairs.length) {
-      setRound(round + 1);
-      setCurrent(0);
-    } else {
-      setCurrent(nextIndex);
-    }
+
+    window.setTimeout(() => setFeedback(null), 1200);
+    window.setTimeout(() => setShowConfetti(false), 1200);
   };
 
   return (
@@ -74,8 +115,15 @@ export function LetterMatchingGame() {
           <h2 className="text-3xl font-bold text-[#2D1B3D]">🎴 مطابقة الحروف</h2>
           <p className="text-lg font-bold text-[#4ECDC4]">النقاط: {score}</p>
         </div>
-        <div className="bg-white rounded-3xl p-8 shadow-lg border-4 border-[#B8A8FF] text-center">
+        <div className="relative bg-white rounded-3xl p-8 shadow-lg border-4 border-[#B8A8FF] text-center">
+          {showConfetti && <CelebrationConfetti />}
           <p className="text-[#7A6B8F] mb-6">هل الحرفان متطابقان؟</p>
+          {feedback && (
+            <div className={`mb-4 rounded-3xl p-4 text-sm font-bold ${feedback === 'success' ? 'bg-[#D3F9D8] text-[#166534]' : 'bg-[#FEE2E2] text-[#991B1B]'}`}>
+              {feedbackText}
+              {feedback === 'error' ? ` - المحاولات الخاطئة: ${wrongAttempts}` : ''}
+            </div>
+          )}
           <div className="flex justify-center gap-8 mb-8">
             <div className="text-6xl font-bold text-[#2D1B3D]">{pairs[current].letter1}</div>
             <div className="text-6xl font-bold text-[#2D1B3D]">{pairs[current].letter2}</div>
@@ -97,6 +145,16 @@ export function LetterMatchingGame() {
           <p className="text-sm text-[#7A6B8F]">السؤال {current + 1} من {pairs.length}</p>
         </div>
       </div>
+      <style>{`
+        .animate-confetti-spark {
+          animation: confetti-spark 1s ease-out forwards;
+        }
+        @keyframes confetti-spark {
+          0% { transform: translateY(0) scale(1); opacity: 1; }
+          50% { transform: translateY(-18px) rotate(25deg) scale(1.1); opacity: 1; }
+          100% { transform: translateY(0) rotate(45deg) scale(0.9); opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -147,6 +205,9 @@ const items = [
 ];
   const [current, setCurrent] = useState(0);
   const [options, setOptions] = useState<string[]>([]);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [feedback, setFeedback] = useState<'success' | 'error' | null>(null);
+  const [feedbackText, setFeedbackText] = useState('');
 
   React.useEffect(() => {
     const correct = items[current].letter;
@@ -162,17 +223,25 @@ const items = [
     const isCorrect = letter === items[current].letter;
     if (isCorrect) {
       setScore(score + 1);
+      setWrongAttempts(0);
+      setFeedback('success');
+      setFeedbackText(getRandomMessage(successMessages));
       playUISound('success');
+      const nextIndex = current + 1;
+      if (nextIndex >= items.length) {
+        setRound(round + 1);
+        setCurrent(0);
+      } else {
+        setCurrent(nextIndex);
+      }
     } else {
+      setWrongAttempts(wrongAttempts + 1);
+      setFeedback('error');
+      setFeedbackText(getRandomMessage(sadMessages));
       playUISound('error');
     }
-    const nextIndex = current + 1;
-    if (nextIndex >= items.length) {
-      setRound(round + 1);
-      setCurrent(0);
-    } else {
-      setCurrent(nextIndex);
-    }
+
+    window.setTimeout(() => setFeedback(null), 1400);
   };
 
   return (
@@ -191,6 +260,18 @@ const items = [
           >
             🔊 استمع للحرف
           </button>
+          {feedback && (
+            <div
+              className={`mb-4 rounded-3xl p-4 text-sm font-bold ${
+                feedback === 'success'
+                  ? 'bg-[#D3F9D8] text-[#166534]'
+                  : 'bg-[#FEE2E2] text-[#991B1B]'
+              }`}
+            >
+              {feedbackText}
+              {feedback === 'error' ? ` - المحاولات الخاطئة: ${wrongAttempts}` : ''}
+            </div>
+          )}
           <div className="grid grid-cols-2 gap-4 mb-8">
             {options.map((letter, i) => (
               <button
@@ -250,6 +331,9 @@ export function WordBeginningGame() {
 
   const allLetters = ['ا','ب','ت','ث','ج','ح','خ','د','ذ','ر','ز','س','ش','ص','ض','ط','ظ','ع','غ','ف','ق','ك','ل','م','ن','ه','و','ي'];
   const [current, setCurrent] = useState(0);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [feedback, setFeedback] = useState<'success' | 'error' | null>(null);
+  const [feedbackText, setFeedbackText] = useState('');
 
   React.useEffect(() => {
     const correct = words[current].letter;
@@ -264,17 +348,24 @@ export function WordBeginningGame() {
     const isCorrect = letter === words[current].letter;
     if (isCorrect) {
       setScore(score + 1);
+      setWrongAttempts(0);
+      setFeedback('success');
+      setFeedbackText(getRandomMessage(successMessages));
       playUISound('success');
+      const nextIndex = current + 1;
+      if (nextIndex >= words.length) {
+        setRound(round + 1);
+        setCurrent(0);
+      } else {
+        setCurrent(nextIndex);
+      }
     } else {
+      setWrongAttempts(wrongAttempts + 1);
+      setFeedback('error');
+      setFeedbackText(getRandomMessage(sadMessages));
       playUISound('error');
     }
-    const nextIndex = current + 1;
-    if (nextIndex >= words.length) {
-      setRound(round + 1);
-      setCurrent(0);
-    } else {
-      setCurrent(nextIndex);
-    }
+    window.setTimeout(() => setFeedback(null), 1400);
   };
 
   return (
@@ -288,6 +379,12 @@ export function WordBeginningGame() {
         <div className="bg-white rounded-3xl p-8 shadow-lg border-4 border-[#4ECDC4] text-center">
           <p className="text-[#7A6B8F] mb-6">ما الحرف الأول للكلمة؟</p>
           <p className="text-5xl font-bold text-[#2D1B3D] mb-8">{words[current].word}</p>
+          {feedback && (
+            <div className={`mb-4 rounded-3xl p-4 text-sm font-bold ${feedback === 'success' ? 'bg-[#D3F9D8] text-[#166534]' : 'bg-[#FEE2E2] text-[#991B1B]'}`}>
+              {feedbackText}
+              {feedback === 'error' ? ` - المحاولات الخاطئة: ${wrongAttempts}` : ''}
+            </div>
+          )}
           <div className="grid grid-cols-3 gap-3 mb-8">
             {options.map((letter, i) => (
               <button
@@ -315,6 +412,9 @@ export function WordBeginningGame() {
 export function RhymingWordsGame() {
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [feedback, setFeedback] = useState<'success' | 'error' | null>(null);
+  const [feedbackText, setFeedbackText] = useState('');
 
   /*const wordPairs = [
     { word1: 'قمر', word2: 'نمر', rhyme: true },
@@ -380,17 +480,24 @@ export function RhymingWordsGame() {
     const isCorrect = answer === wordPairs[current].rhyme;
     if (isCorrect) {
       setScore(score + 1);
+      setWrongAttempts(0);
+      setFeedback('success');
+      setFeedbackText(getRandomMessage(successMessages));
       playUISound('success');
+      const nextIndex = current + 1;
+      if (nextIndex >= wordPairs.length) {
+        setRound(round + 1);
+        setCurrent(0);
+      } else {
+        setCurrent(nextIndex);
+      }
     } else {
+      setWrongAttempts(wrongAttempts + 1);
+      setFeedback('error');
+      setFeedbackText(getRandomMessage(sadMessages));
       playUISound('error');
     }
-    const nextIndex = current + 1;
-    if (nextIndex >= wordPairs.length) {
-      setRound(round + 1);
-      setCurrent(0);
-    } else {
-      setCurrent(nextIndex);
-    }
+    window.setTimeout(() => setFeedback(null), 1400);
   };
 
   return (
@@ -403,6 +510,12 @@ export function RhymingWordsGame() {
         </div>
         <div className="bg-white rounded-3xl p-8 shadow-lg border-4 border-[#FFD93D] text-center">
           <p className="text-[#7A6B8F] mb-6">هل الكلمتان متشابهتان في النهاية؟</p>
+          {feedback && (
+            <div className={`mb-4 rounded-3xl p-4 text-sm font-bold ${feedback === 'success' ? 'bg-[#D3F9D8] text-[#166534]' : 'bg-[#FEE2E2] text-[#991B1B]'}`}>
+              {feedbackText}
+              {feedback === 'error' ? ` - المحاولات الخاطئة: ${wrongAttempts}` : ''}
+            </div>
+          )}
           <div className="flex justify-center gap-8 mb-8">
             <div className="text-4xl font-bold text-[#2D1B3D]">{wordPairs[current].word1}</div>
             <div className="text-4xl font-bold text-[#2D1B3D]">{wordPairs[current].word2}</div>
@@ -446,9 +559,13 @@ export function LetterSoundSpeedGame() {
 ];
   const [current, setCurrent] = useState(0);
   const [speed, setSpeed] = useState(1);
+  const [feedback, setFeedback] = useState<'success' | null>(null);
+  const [feedbackText, setFeedbackText] = useState('');
 
   const handleAnswer = () => {
     setScore(score + 1);
+    setFeedback('success');
+    setFeedbackText(getRandomMessage(successMessages));
     playUISound('success');
     const nextIndex = current + 1;
     if (nextIndex >= letters.length) {
@@ -458,6 +575,7 @@ export function LetterSoundSpeedGame() {
     } else {
       setCurrent(nextIndex);
     }
+    window.setTimeout(() => setFeedback(null), 1400);
   };
 
   return (
@@ -477,6 +595,11 @@ export function LetterSoundSpeedGame() {
           >
             ✓ سمعت الحرف
           </button>
+          {feedback && (
+            <div className="mt-4 rounded-3xl bg-[#D3F9D8] p-4 text-sm font-bold text-[#166534]">
+              {feedbackText}
+            </div>
+          )}
           <p className="text-sm text-[#7A6B8F] mt-6">الحرف {current + 1} من {letters.length}</p>
         </div>
       </div>
@@ -561,10 +684,16 @@ export function SyllableBlendingGame() {
   { syllables: ['لع', 'ب'], answer: 'لعب' },
 ];
   const [current, setCurrent] = useState(0);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [feedback, setFeedback] = useState<'success' | 'error' | null>(null);
+  const [feedbackText, setFeedbackText] = useState('');
 
   const handleSubmit = () => {
     if (input === items[current].answer) {
       setScore(score + 1);
+      setWrongAttempts(0);
+      setFeedback('success');
+      setFeedbackText(getRandomMessage(successMessages));
       playUISound('success');
       const nextIndex = current + 1;
       if (nextIndex >= items.length) {
@@ -575,9 +704,13 @@ export function SyllableBlendingGame() {
       }
       setInput('');
     } else {
+      setWrongAttempts(wrongAttempts + 1);
+      setFeedback('error');
+      setFeedbackText(getRandomMessage(sadMessages));
       playUISound('error');
       setInput('');
     }
+    window.setTimeout(() => setFeedback(null), 1400);
   };
 
   return (
@@ -600,6 +733,12 @@ export function SyllableBlendingGame() {
               </div>
             ))}
           </div>
+          {feedback && (
+            <div className={`mb-4 rounded-3xl p-4 text-sm font-bold ${feedback === 'success' ? 'bg-[#D3F9D8] text-[#166534]' : 'bg-[#FEE2E2] text-[#991B1B]'}`}>
+              {feedbackText}
+              {feedback === 'error' ? ` - المحاولات الخاطئة: ${wrongAttempts}` : ''}
+            </div>
+          )}
           <input
             type="text"
             value={input}
@@ -663,6 +802,9 @@ export function WordSearchGame() {
   const [selectedLetters, setSelectedLetters] = useState<number[]>([]);
   const [currentRound, setCurrentRound] = useState(0);
   const [foundCount, setFoundCount] = useState(0);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [feedback, setFeedback] = useState<'success' | 'error' | null>(null);
+  const [feedbackText, setFeedbackText] = useState('');
 
   //const allWords = ['كتب', 'نور', 'مدرسة', 'قلم', 'بيت', 'شمس', 'قمر', 'نمر'];
   const allWords = [
@@ -732,6 +874,9 @@ export function WordSearchGame() {
     if (word === targetWord) {
       setScore(score + 1);
       setFoundCount(foundCount + 1);
+      setWrongAttempts(0);
+      setFeedback('success');
+      setFeedbackText(getRandomMessage(successMessages));
       playUISound('success');
       
       if (foundCount + 1 >= 3) {
@@ -749,9 +894,13 @@ export function WordSearchGame() {
         setGrid(generateGrid(targetWord));
       }
     } else {
+      setWrongAttempts(wrongAttempts + 1);
+      setFeedback('error');
+      setFeedbackText(getRandomMessage(sadMessages));
       playUISound('error');
       setSelectedLetters([]);
     }
+    window.setTimeout(() => setFeedback(null), 1400);
   };
 
   return (
@@ -769,6 +918,12 @@ export function WordSearchGame() {
             <p className="text-6xl font-bold text-[#2D1B3D] border-4 border-white rounded-lg p-4 bg-white shadow-lg">{targetWord}</p>
             <p className="text-sm text-[#7A6B8F] mt-2">المرات المتبقية: {3 - foundCount}</p>
           </div>
+          {feedback && (
+            <div className={`mb-4 rounded-3xl p-4 text-sm font-bold ${feedback === 'success' ? 'bg-[#D3F9D8] text-[#166534]' : 'bg-[#FEE2E2] text-[#991B1B]'}`}>
+              {feedbackText}
+              {feedback === 'error' ? ` - المحاولات الخاطئة: ${wrongAttempts}` : ''}
+            </div>
+          )}
           
           <div className="grid grid-cols-4 gap-2 mb-8 font-bold text-2xl">
             {grid.map((letter, i) => (
@@ -805,6 +960,9 @@ export function WordRecognitionGame() {
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
   const [shuffledWords, setShuffledWords] = useState<{word: string, correct: boolean}[]>([]);
+  const [wrongAttempts, setWrongAttempts] = useState(0);
+  const [feedback, setFeedback] = useState<'success' | 'error' | null>(null);
+  const [feedbackText, setFeedbackText] = useState('');
 
   const words = [
     { word: 'كتاب', correct: true },
@@ -953,17 +1111,24 @@ export function WordRecognitionGame() {
     const isCorrect = answer === shuffledWords[current].correct;
     if (isCorrect) {
       setScore(score + 1);
+      setWrongAttempts(0);
+      setFeedback('success');
+      setFeedbackText(getRandomMessage(successMessages));
       playUISound('success');
+      const nextIndex = current + 1;
+      if (nextIndex >= shuffledWords.length) {
+        setRound(round + 1);
+        setCurrent(0);
+      } else {
+        setCurrent(nextIndex);
+      }
     } else {
+      setWrongAttempts(wrongAttempts + 1);
+      setFeedback('error');
+      setFeedbackText(getRandomMessage(sadMessages));
       playUISound('error');
     }
-    const nextIndex = current + 1;
-    if (nextIndex >= shuffledWords.length) {
-      setRound(round + 1);
-      setCurrent(0);
-    } else {
-      setCurrent(nextIndex);
-    }
+    window.setTimeout(() => setFeedback(null), 1400);
   };
 
   if (shuffledWords.length === 0) return null; // Loading
@@ -978,6 +1143,12 @@ export function WordRecognitionGame() {
         </div>
         <div className="bg-white rounded-3xl p-8 shadow-lg border-4 border-[#B8A8FF] text-center">
           <p className="text-[#7A6B8F] mb-6">هل هذه كلمة عربية صحيحة؟</p>
+          {feedback && (
+            <div className={`mb-4 rounded-3xl p-4 text-sm font-bold ${feedback === 'success' ? 'bg-[#D3F9D8] text-[#166534]' : 'bg-[#FEE2E2] text-[#991B1B]'}`}>
+              {feedbackText}
+              {feedback === 'error' ? ` - المحاولات الخاطئة: ${wrongAttempts}` : ''}
+            </div>
+          )}
           <p className="text-5xl font-bold text-[#2D1B3D] mb-8">{shuffledWords[current].word}</p>
           <div className="grid grid-cols-2 gap-4 mb-8">
             <button

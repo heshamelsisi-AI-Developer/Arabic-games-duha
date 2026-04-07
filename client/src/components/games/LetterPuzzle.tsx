@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ARABIC_LETTERS } from '@/lib/arabicLetters';
 import { playUISound } from '@/lib/audioManager';
+import CelebrationConfetti from './CelebrationConfetti';
 
 /**
  * Letter Puzzle Game - Word Completion
@@ -153,7 +154,8 @@ export default function LetterPuzzle() {
   const wordLetters = currentPuzzle.word.split('');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF] py-8">
+    <div className="relative min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF] py-8">
+      {feedback === 'correct' && <CelebrationConfetti />}
       <div className="container max-w-2xl">
         {/* Header */}
         <div className="text-center mb-8">

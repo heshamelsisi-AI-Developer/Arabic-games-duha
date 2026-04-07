@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
+import CelebrationConfetti from './CelebrationConfetti';
 import { getRandomLetters, ArabicLetter } from '@/lib/arabicLetters';
 
 interface Card {
@@ -96,7 +97,8 @@ export default function MemoryGame() {
   const colors = ['#FFD93D', '#4ECDC4', '#B8A8FF', '#FF6B5B'];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] gap-8">
+    <div className="relative flex flex-col items-center justify-center min-h-[70vh] gap-8">
+      {gameWon && <CelebrationConfetti />}
       {/* Header */}
       <div className="text-center">
         <h2 className="text-4xl font-bold text-[#2D1B3D] mb-2">لعبة الذاكرة</h2>

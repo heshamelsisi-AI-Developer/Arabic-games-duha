@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
 import { playUISound } from '@/lib/audioManager';
+import CelebrationConfetti from './CelebrationConfetti';
 
 interface GameItem {
   word: string;
   letters: string[];
+  wordMeaning?: string;
 }
 
 /**
@@ -180,7 +182,8 @@ export default function WordBuilder() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF] p-8">
+    <div className="relative min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF] p-8">
+      {feedback === 'correct' && <CelebrationConfetti />}
       <div className="container max-w-4xl">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">

@@ -17,18 +17,30 @@ export default function Landing({ onSelectSection }: LandingProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] via-[#FFFBF5] to-[#F8F3FF] flex flex-col">
       {/* Header */}
-      <header className="bg-white/40 backdrop-blur-md border-b border-[#E8D4E8] py-6">
+      <header className="bg-white/40 backdrop-blur-md border-b border-[#E8D4E8] py-6 relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-8 top-8 w-3 h-3 rounded-full bg-[#FFB74D] animate-confetti" style={{ animationDelay: '0s' }} />
+          <div className="absolute left-1/2 top-12 w-3 h-3 rounded-full bg-[#4ECDC4] animate-confetti" style={{ animationDelay: '0.2s' }} />
+          <div className="absolute right-16 top-16 w-3 h-3 rounded-full bg-[#FF6B5B] animate-confetti" style={{ animationDelay: '0.4s' }} />
+          <div className="absolute left-24 top-24 w-2 h-6 rounded-full bg-[#B8A8FF] animate-confetti" style={{ animationDelay: '0.1s' }} />
+          <div className="absolute right-24 top-10 w-2 h-6 rounded-full bg-[#FFD93D] animate-confetti" style={{ animationDelay: '0.3s' }} />
+        </div>
+        <div className="absolute left-6 top-4 text-3xl animate-float-slow">✨</div>
+        <div className="absolute right-8 top-6 text-3xl animate-float-slow animation-delay-200">🌟</div>
         <div className="container flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="text-4xl">🎮</div>
+            <div className="text-4xl animate-bounce">🎮</div>
             <div>
               <h1 className="text-3xl font-bold text-[#2D1B3D]">The Duha Way</h1>
               <p className="text-sm text-[#7A6B8F] font-poppins">
-                تعلم وتدرب على الحروف العربية
+                تعلم وتدرب على الحروف العربية بشكل ممتع
               </p>
             </div>
           </div>
-
+          <div className="hidden md:flex items-center gap-2 text-[#4ECDC4] font-bold">
+            <span className="text-2xl animate-pulse">🎈</span>
+            <span>مغامرة الحروف</span>
+          </div>
         </div>
       </header>
 
@@ -192,6 +204,25 @@ export default function Landing({ onSelectSection }: LandingProps) {
         .animate-slide-up {
           animation: slide-up 0.6s ease-out forwards;
           opacity: 0;
+        }
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-float-slow {
+          animation: float-slow 3s ease-in-out infinite;
+        }
+        .animate-confetti {
+          animation: confetti-fall 1.8s ease-in-out infinite;
+          opacity: 0.9;
+        }
+        @keyframes confetti-fall {
+          0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+          50% { transform: translateY(18px) rotate(45deg); opacity: 1; }
+          100% { transform: translateY(0) rotate(90deg); opacity: 0.9; }
+        }
+        .animation-delay-200 {
+          animation-delay: 0.2s;
         }
       `}</style>
     </div>
