@@ -15,7 +15,7 @@ interface LetterPosition {
  * - Find and click all instances of target letter
  */
 
-const GAME_ROUNDS = [
+/*const GAME_ROUNDS = [
   { targetLetter: 'ا', letterCount: 5 },
   { targetLetter: 'ب', letterCount: 5 },
   { targetLetter: 'ت', letterCount: 5 },
@@ -23,7 +23,43 @@ const GAME_ROUNDS = [
   { targetLetter: 'ج', letterCount: 5 },
 ];
 
-const ALL_LETTERS = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر'];
+const ALL_LETTERS = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر'];*/
+const GAME_ROUNDS = [
+  { targetLetter: 'م', letterCount: 5 },
+  { targetLetter: 'ب', letterCount: 5 },
+  { targetLetter: 'س', letterCount: 5 },
+  { targetLetter: 'ا', letterCount: 5 },
+  { targetLetter: 'ك', letterCount: 5 },
+  { targetLetter: 'ن', letterCount: 5 },
+  { targetLetter: 'ر', letterCount: 5 },
+  { targetLetter: 'ت', letterCount: 5 },
+  { targetLetter: 'ف', letterCount: 5 },
+  { targetLetter: 'ل', letterCount: 5 },
+  { targetLetter: 'ج', letterCount: 5 },
+  { targetLetter: 'و', letterCount: 5 },
+  { targetLetter: 'ي', letterCount: 5 },
+  { targetLetter: 'د', letterCount: 5 },
+  { targetLetter: 'ه', letterCount: 5 },
+  { targetLetter: 'ش', letterCount: 5 },
+  { targetLetter: 'ق', letterCount: 5 },
+  { targetLetter: 'ز', letterCount: 5 },
+  { targetLetter: 'ع', letterCount: 5 },
+  { targetLetter: 'ص', letterCount: 5 },
+  { targetLetter: 'ث', letterCount: 5 },
+  { targetLetter: 'ح', letterCount: 5 },
+  { targetLetter: 'خ', letterCount: 5 },
+  { targetLetter: 'ذ', letterCount: 5 },
+  { targetLetter: 'ض', letterCount: 5 },
+  { targetLetter: 'ط', letterCount: 5 },
+  { targetLetter: 'ظ', letterCount: 5 },
+  { targetLetter: 'غ', letterCount: 5 },
+];
+const ALL_LETTERS = [
+  'ا','ب','ت','ث','ج','ح','خ','د','ذ','ر',
+  'ز','س','ش','ص','ض','ط','ظ','ع','غ','ف',
+  'ق','ك','ل','م','ن','ه','و','ي'
+];
+
 
 export default function HiddenLetter() {
   const [currentRoundIndex, setCurrentRoundIndex] = useState(0);

@@ -8,14 +8,44 @@ export function LetterMatchingGame() {
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
 
-  const pairs = [
+  /*const pairs = [
     { letter1: 'ا', letter2: 'ا', match: true },
     { letter1: 'ب', letter2: 'ب', match: true },
     { letter1: 'ت', letter2: 'ت', match: true },
     { letter1: 'ا', letter2: 'ب', match: false },
     { letter1: 'ج', letter2: 'ج', match: true },
     { letter1: 'ح', letter2: 'خ', match: false },
-  ];
+  ];*/
+  const pairs = [
+  { letter1: 'ا', letter2: 'ب', match: false },
+  { letter1: 'م', letter2: 'م', match: true },
+  { letter1: 'ت', letter2: 'ت', match: true },
+  { letter1: 'ح', letter2: 'خ', match: false },
+  { letter1: 'س', letter2: 'س', match: true },
+  { letter1: 'ب', letter2: 'ك', match: false },
+  { letter1: 'ر', letter2: 'ر', match: true },
+  { letter1: 'ج', letter2: 'ن', match: false },
+  { letter1: 'ف', letter2: 'ف', match: true },
+  { letter1: 'خ', letter2: 'ي', match: false },
+  { letter1: 'ل', letter2: 'ل', match: true },
+  { letter1: 'ا', letter2: 'ا', match: true },
+  { letter1: 'ت', letter2: 'م', match: false },
+  { letter1: 'ش', letter2: 'ش', match: true },
+  { letter1: 'ق', letter2: 'ك', match: false },
+  { letter1: 'ن', letter2: 'ن', match: true },
+  { letter1: 'و', letter2: 'ي', match: false },
+  { letter1: 'د', letter2: 'د', match: true },
+  { letter1: 'ص', letter2: 'ص', match: true },
+  { letter1: 'ض', letter2: 'ط', match: false },
+  { letter1: 'ه', letter2: 'ه', match: true },
+  { letter1: 'ز', letter2: 'س', match: false },
+  { letter1: 'ك', letter2: 'ك', match: true },
+  { letter1: 'غ', letter2: 'ف', match: false },
+  { letter1: 'ي', letter2: 'ي', match: true },
+  { letter1: 'ث', letter2: 'ث', match: true },
+  { letter1: 'ذ', letter2: 'ر', match: false },
+  { letter1: 'ع', letter2: 'ع', match: true },
+];
 
   const [current, setCurrent] = useState(0);
 
@@ -78,14 +108,43 @@ export function SoundToLetterGame() {
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
 
-  const items = [
+  /*const items = [
     { letter: 'ا', sound: 'ألف' },
     { letter: 'ب', sound: 'باء' },
     { letter: 'ت', sound: 'تاء' },
     { letter: 'ث', sound: 'ثاء' },
     { letter: 'ج', sound: 'جيم' },
-  ];
-
+  ];*/
+const items = [
+  { letter: 'ا', sound: 'ألف' },
+  { letter: 'ب', sound: 'باء' },
+  { letter: 'ت', sound: 'تاء' },
+  { letter: 'ث', sound: 'ثاء' },
+  { letter: 'ج', sound: 'جيم' },
+  { letter: 'ح', sound: 'حاء' },
+  { letter: 'خ', sound: 'خاء' },
+  { letter: 'د', sound: 'دال' },
+  { letter: 'ذ', sound: 'ذال' },
+  { letter: 'ر', sound: 'راء' },
+  { letter: 'ز', sound: 'زاي' },
+  { letter: 'س', sound: 'سين' },
+  { letter: 'ش', sound: 'شين' },
+  { letter: 'ص', sound: 'صاد' },
+  { letter: 'ض', sound: 'ضاد' },
+  { letter: 'ط', sound: 'طاء' },
+  { letter: 'ظ', sound: 'ظاء' },
+  { letter: 'ع', sound: 'عين' },
+  { letter: 'غ', sound: 'غين' },
+  { letter: 'ف', sound: 'فاء' },
+  { letter: 'ق', sound: 'قاف' },
+  { letter: 'ك', sound: 'كاف' },
+  { letter: 'ل', sound: 'لام' },
+  { letter: 'م', sound: 'ميم' },
+  { letter: 'ن', sound: 'نون' },
+  { letter: 'ه', sound: 'هاء' },
+  { letter: 'و', sound: 'واو' },
+  { letter: 'ي', sound: 'ياء' },
+];
   const [current, setCurrent] = useState(0);
   const [options, setOptions] = useState<string[]>([]);
 
@@ -148,12 +207,35 @@ export function WordBeginningGame() {
   const [round, setRound] = useState(0);
 
   const words = [
-    { word: 'أسد', letter: 'ا' },
-    { word: 'بيت', letter: 'ب' },
-    { word: 'تفاح', letter: 'ت' },
-    { word: 'ثعلب', letter: 'ث' },
-    { word: 'جمل', letter: 'ج' },
-  ];
+  { word: 'أسد', letter: 'ا' },
+  { word: 'بطة', letter: 'ب' },
+  { word: 'تفاح', letter: 'ت' },
+  { word: 'ثعلب', letter: 'ث' },
+  { word: 'جمل', letter: 'ج' },
+  { word: 'حصان', letter: 'ح' },
+  { word: 'خبز', letter: 'خ' },
+  { word: 'دب', letter: 'د' },
+  { word: 'ذئب', letter: 'ذ' },
+  { word: 'رجل', letter: 'ر' },
+  { word: 'زرافة', letter: 'ز' },
+  { word: 'سيارة', letter: 'س' },
+  { word: 'شمس', letter: 'ش' },
+  { word: 'صندوق', letter: 'ص' },
+  { word: 'ضفدع', letter: 'ض' },
+  { word: 'طائرة', letter: 'ط' },
+  { word: 'ظل', letter: 'ظ' },
+  { word: 'عصفور', letter: 'ع' },
+  { word: 'غزال', letter: 'غ' },
+  { word: 'فراولة', letter: 'ف' },
+  { word: 'قطة', letter: 'ق' },
+  { word: 'كلب', letter: 'ك' },
+  { word: 'ليمون', letter: 'ل' },
+  { word: 'موز', letter: 'م' },
+  { word: 'نمر', letter: 'ن' },
+  { word: 'هدهد', letter: 'ه' },
+  { word: 'وردة', letter: 'و' },
+  { word: 'يمامة', letter: 'ي' },
+];
 
   const [current, setCurrent] = useState(0);
 
@@ -210,14 +292,63 @@ export function RhymingWordsGame() {
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
 
-  const wordPairs = [
+  /*const wordPairs = [
     { word1: 'قمر', word2: 'نمر', rhyme: true },
     { word1: 'بيت', word2: 'ليت', rhyme: true },
     { word1: 'ماء', word2: 'سماء', rhyme: true },
     { word1: 'كتاب', word2: 'نور', rhyme: false },
     { word1: 'شمس', word2: 'قمس', rhyme: true },
     { word1: 'حديقة', word2: 'سيارة', rhyme: false },
-  ];
+  ];*/
+  const wordPairs = [
+  { word1: 'قمر', word2: 'نمر', rhyme: false },
+  { word1: 'بيت', word2: 'بيت', rhyme: true },
+  { word1: 'ماء', word2: 'ماء', rhyme: true },
+  { word1: 'شمس', word2: 'شمس', rhyme: true },
+
+  { word1: 'كتاب', word2: 'كتاب', rhyme: false },
+  { word1: 'حديقة', word2: 'سيارة', rhyme: false },
+
+  { word1: 'بحر', word2: 'سحر', rhyme: false },
+  { word1: 'فيل', word2: 'فيل', rhyme: true },
+  { word1: 'قلم', word2: 'علم', rhyme: false },
+
+  { word1: 'تفاح', word2: 'موز', rhyme: false },
+  { word1: 'ورد', word2: 'نار', rhyme: false },
+
+  { word1: 'نور', word2: 'نور', rhyme: true },
+  { word1: 'كلب', word2: 'قطة', rhyme: false },
+
+  { word1: 'فلاح', word2: 'فلاح', rhyme: true },
+  { word1: 'صديق', word2: 'صديق', rhyme: true },
+
+  { word1: 'شجرة', word2: 'بحر', rhyme: false },
+
+  { word1: 'صوت', word2: 'موت', rhyme: false },
+  { word1: 'سيف', word2: 'ضيف', rhyme: false },
+
+  { word1: 'قلب', word2: 'حجر', rhyme: false },
+
+  { word1: 'جميل', word2: 'جميل', rhyme: true },
+  { word1: 'سريع', word2: 'بطيء', rhyme: false },
+
+  { word1: 'نجم', word2: 'نجم', rhyme: true },
+  { word1: 'درس', word2: 'قلم', rhyme: false },
+
+  { word1: 'باب', word2: 'ناب', rhyme: false },
+  { word1: 'ورد', word2: 'برد', rhyme: false },
+
+  { word1: 'قمر', word2: 'قمر', rhyme: true },
+  { word1: 'سماء', word2: 'أرض', rhyme: false },
+
+  { word1: 'شمس', word2: 'قمر', rhyme: false },
+
+  { word1: 'كتاب', word2: 'حساب', rhyme: false },
+  { word1: 'باب', word2: 'قلم', rhyme: false },
+
+  { word1: 'عين', word2: 'عين', rhyme: true },
+  { word1: 'نور', word2: 'شمس', rhyme: false },
+];
 
   const [current, setCurrent] = useState(0);
 
@@ -280,7 +411,15 @@ export function LetterSoundSpeedGame() {
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
 
-  const letters = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د'];
+  //const letters = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د'];
+  const letters = [
+  'ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ',
+  'د', 'ذ', 'ر', 'ز', 'س', 'ش',
+  'ص', 'ض', 'ط', 'ظ',
+  'ع', 'غ',
+  'ف', 'ق', 'ك', 'ل', 'م', 'ن',
+  'ه', 'و', 'ي'
+];
   const [current, setCurrent] = useState(0);
   const [speed, setSpeed] = useState(1);
 
@@ -329,15 +468,74 @@ export function SyllableBlendingGame() {
   const [round, setRound] = useState(0);
   const [input, setInput] = useState('');
 
-  const items = [
+  /*const items = [
     { syllables: ['با', 'ب'], answer: 'باب' },
-    { syllables: ['كا', 'تب'], answer: 'كتاب' },
+    { syllables: ['كت', 'اب'], answer: 'كتاب' },
     { syllables: ['مد', 'رسة'], answer: 'مدرسة' },
     { syllables: ['قا', 'ضي'], answer: 'قاضي' },
     { syllables: ['نا', 'ر'], answer: 'نار' },
     { syllables: ['ما', 'ء'], answer: 'ماء' },
-  ];
+  ];*/
+  const items = [
+  { syllables: ['با', 'ب'], answer: 'باب' },
+  { syllables: ['كت', 'اب'], answer: 'كتاب' },
+  { syllables: ['مد', 'رسة'], answer: 'مدرسة' },
+  { syllables: ['قا', 'ضي'], answer: 'قاضي' },
+  { syllables: ['نا', 'ر'], answer: 'نار' },
+  { syllables: ['ما', 'ء'], answer: 'ماء' },
 
+  { syllables: ['قل', 'م'], answer: 'قلم' },
+  { syllables: ['دف', 'تر'], answer: 'دفتر' },
+  { syllables: ['سب', 'و', 'رة'], answer: 'سبورة' },
+  { syllables: ['طا', 'ول', 'ة'], answer: 'طاولة' },
+  { syllables: ['كر', 'سي'], answer: 'كرسي' },
+
+  { syllables: ['ش', 'مس'], answer: 'شمس' },
+  { syllables: ['ق', 'مر'], answer: 'قمر' },
+  { syllables: ['ن', 'جم'], answer: 'نجم' },
+  { syllables: ['س', 'ما', 'ء'], answer: 'سماء' },
+
+  { syllables: ['أ', 'سد'], answer: 'أسد' },
+  { syllables: ['ن', 'مر'], answer: 'نمر' },
+  { syllables: ['ف', 'يل'], answer: 'فيل' },
+  { syllables: ['ج', 'مل'], answer: 'جمل' },
+  { syllables: ['أر', 'نب'], answer: 'أرنب' },
+
+  { syllables: ['سي', 'ا', 'رة'], answer: 'سيارة' },
+  { syllables: ['طا', 'ئ', 'رة'], answer: 'طائرة' },
+  { syllables: ['در', 'ا', 'جة'], answer: 'دراجة' },
+
+  { syllables: ['تف', 'اح'], answer: 'تفاح' },
+  { syllables: ['مو', 'ز'], answer: 'موز' },
+  { syllables: ['عن', 'ب'], answer: 'عنب' },
+  { syllables: ['تو', 'ت'], answer: 'توت' },
+  { syllables: ['ر', 'ما', 'ن'], answer: 'رمان' },
+
+  { syllables: ['بي', 'ت'], answer: 'بيت' },
+  { syllables: ['غر', 'فة'], answer: 'غرفة' },
+  { syllables: ['با', 'ب'], answer: 'باب' },
+  { syllables: ['سر', 'ير'], answer: 'سرير' },
+
+  { syllables: ['و', 'رد', 'ة'], answer: 'وردة' },
+  { syllables: ['زه', 'رة'], answer: 'زهرة' },
+  { syllables: ['ش', 'جر', 'ة'], answer: 'شجرة' },
+
+  { syllables: ['س', 'مك'], answer: 'سمك' },
+  { syllables: ['ط', 'ير'], answer: 'طير' },
+  { syllables: ['بط', 'ة'], answer: 'بطة' },
+
+  { syllables: ['ح', 'ليب'], answer: 'حليب' },
+  { syllables: ['خب', 'ز'], answer: 'خبز' },
+  { syllables: ['جب', 'ن'], answer: 'جبن' },
+
+  { syllables: ['ل', 'يل'], answer: 'ليل' },
+  { syllables: ['نه', 'ار'], answer: 'نهار' },
+
+  { syllables: ['ص', 'وت'], answer: 'صوت' },
+  { syllables: ['لو', 'ن'], answer: 'لون' },
+  { syllables: ['عل', 'م'], answer: 'علم' },
+  { syllables: ['لع', 'ب'], answer: 'لعب' },
+];
   const [current, setCurrent] = useState(0);
 
   const handleSubmit = () => {
@@ -442,26 +640,64 @@ export function WordSearchGame() {
   const [currentRound, setCurrentRound] = useState(0);
   const [foundCount, setFoundCount] = useState(0);
 
-  const allWords = ['كتب', 'نور', 'مدرسة', 'قلم', 'بيت', 'شمس', 'قمر', 'نمر'];
+  //const allWords = ['كتب', 'نور', 'مدرسة', 'قلم', 'بيت', 'شمس', 'قمر', 'نمر'];
+  const allWords = [
+  'كتب', 'نور', 'مدرسة', 'قلم', 'بيت', 'شمس', 'قمر', 'نمر',
+  'أسد', 'فيل', 'جمل', 'أرنب', 'بطة', 'سمك', 'طير',
+  'تفاح', 'موز', 'عنب', 'توت', 'رمان', 'ليمون', 'برتقال',
+  'خبز', 'حليب', 'جبن', 'ماء',
+  'سيارة', 'قطار', 'طائرة', 'دراجة',
+  'باب', 'نافذة', 'غرفة', 'سرير', 'كرسي', 'طاولة',
+  'شجرة', 'زهرة', 'وردة', 'حديقة',
+  'ليل', 'نهار', 'صباح', 'مساء',
+  'نجم', 'سماء', 'بحر', 'نهر',
+  'صوت', 'لون', 'علم', 'لعب',
+  'كتاب', 'دفتر', 'سبورة',
+  'قطة', 'كلب', 'حصان', 'غزال', 'ذئب',
+  'رجل', 'طفل', 'أم', 'أب',
+  'عمل', 'درس', 'نجاح', 'فشل',
+  'طعام', 'شراب', 'فاكهة',
+  'صندوق', 'مفتاح', 'هاتف',
+];
   const targetWord = allWords[currentRound % allWords.length];
   const targetLength = targetWord.length;
   
   // Generate random letters with target word letters mixed in
   const generateGrid = () => {
     const letters = targetWord.split('');
-    const allLetters = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط'];
-    
+    //const allLetters = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط'];
+    const allLetters = [
+      'ا','ب','ت','ث','ج','ح','خ',
+      'د','ذ','ر','ز','س','ش',
+      'ص','ض','ط','ظ',
+      'ع','غ',
+      'ف','ق','ك','ل','م','ن',
+      'ه','و','ي'
+    ];    
     // Add target letters multiple times
-    const grid = [...letters, ...letters];
-    
+    //const grid = [...letters, ...letters];
+    const grid = [...letters];
+    const gridSize = Math.max(12, letters.length + 4);
     // Add random letters
-    while (grid.length < 12) {
+    /*while (grid.length < 12) {
       const randomLetter = allLetters[Math.floor(Math.random() * allLetters.length)];
+      grid.push(randomLetter);
+    }*/
+    while (grid.length < gridSize) {
+      const randomLetter =
+        allLetters[Math.floor(Math.random() * allLetters.length)];
       grid.push(randomLetter);
     }
     
     // Shuffle
-    return grid.sort(() => Math.random() - 0.5);
+    //return grid.sort(() => Math.random() - 0.5);
+    // 4. Shuffle محترم
+    for (let i = grid.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [grid[i], grid[j]] = [grid[j], grid[i]];
+    }
+
+    return grid;
   };
 
   const [grid, setGrid] = React.useState(generateGrid());

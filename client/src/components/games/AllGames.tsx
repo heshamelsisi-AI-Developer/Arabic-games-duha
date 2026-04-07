@@ -10,12 +10,90 @@ import { playUISound } from '@/lib/audioManager';
 // Game 1: Sound Start - صوت بداية الكلمة
 // ============================================================================
 export function SoundStartGame() {
-  const words = [
+const words = [
     { word: 'أسد', sound: 'ا' },
+    { word: 'أرنب', sound: 'ا' },
+
     { word: 'بيت', sound: 'ب' },
+    { word: 'بطة', sound: 'ب' },
+
     { word: 'تمر', sound: 'ت' },
+    { word: 'تفاح', sound: 'ت' },
+
     { word: 'ثعلب', sound: 'ث' },
+    { word: 'ثوب', sound: 'ث' },
+
     { word: 'جمل', sound: 'ج' },
+    { word: 'جبن', sound: 'ج' },
+
+    { word: 'حصان', sound: 'ح' },
+    { word: 'حوت', sound: 'ح' },
+
+    { word: 'خروف', sound: 'خ' },
+    { word: 'خبز', sound: 'خ' },
+
+    { word: 'دب', sound: 'د' },
+    { word: 'دجاجة', sound: 'د' },
+
+    { word: 'ذئب', sound: 'ذ' },
+    { word: 'ذرة', sound: 'ذ' },
+
+    { word: 'رمان', sound: 'ر' },
+    { word: 'رجل', sound: 'ر' },
+
+    { word: 'زرافة', sound: 'ز' },
+    { word: 'زهرة', sound: 'ز' },
+
+    { word: 'سمك', sound: 'س' },
+    { word: 'سيارة', sound: 'س' },
+
+    { word: 'شمس', sound: 'ش' },
+    { word: 'شجرة', sound: 'ش' },
+
+    { word: 'صقر', sound: 'ص' },
+    { word: 'صندوق', sound: 'ص' },
+
+    { word: 'ضفدع', sound: 'ض' },
+    { word: 'ضوء', sound: 'ض' },
+
+    { word: 'طائرة', sound: 'ط' },
+    { word: 'طماطم', sound: 'ط' },
+
+    { word: 'ظرف', sound: 'ظ' },
+    { word: 'ظبي', sound: 'ظ' },
+
+    { word: 'عصفور', sound: 'ع' },
+    { word: 'عين', sound: 'ع' },
+
+    { word: 'غزال', sound: 'غ' },
+    { word: 'غسالة', sound: 'غ' },
+
+    { word: 'فيل', sound: 'ف' },
+    { word: 'فراولة', sound: 'ف' },
+
+    { word: 'قلم', sound: 'ق' },
+    { word: 'قطة', sound: 'ق' },
+
+    { word: 'كلب', sound: 'ك' },
+    { word: 'كرة', sound: 'ك' },
+
+    { word: 'ليمون', sound: 'ل' },
+    { word: 'لبن', sound: 'ل' },
+
+    { word: 'موز', sound: 'م' },
+    { word: 'مطر', sound: 'م' },
+
+    { word: 'نمر', sound: 'ن' },
+    { word: 'نجم', sound: 'ن' },
+
+    { word: 'هدهد', sound: 'ه' },
+    { word: 'هاتف', sound: 'ه' },
+
+    { word: 'وردة', sound: 'و' },
+    { word: 'ولد', sound: 'و' },
+
+    { word: 'يد', sound: 'ي' },
+    { word: 'يمامة', sound: 'ي' },
   ];
 
   const [current, setCurrent] = useState(0);
@@ -71,11 +149,52 @@ export function SoundStartGame() {
 // Game 2: Similar Words - الكلمات المتشابهة
 // ============================================================================
 export function SimilarWordsGame() {
-  const wordPairs = [
+  /*const wordPairs = [
     { word1: 'قط', word2: 'قط', similar: true },
     { word1: 'كتب', word2: 'كتاب', similar: false },
     { word1: 'باب', word2: 'باب', similar: true },
     { word1: 'نور', word2: 'نار', similar: false },
+  ];*/
+  const wordPairs = [
+  { word1: 'نور', word2: 'نار', similar: false },
+  { word1: 'قط', word2: 'قط', similar: true },
+  { word1: 'بيت', word2: 'بنت', similar: false },
+  { word1: 'قلم', word2: 'قلم', similar: true },
+  { word1: 'شمس', word2: 'خمس', similar: false },
+  { word1: 'كلب', word2: 'كلب', similar: true },
+  { word1: 'نهر', word2: 'نمر', similar: false },
+  { word1: 'باب', word2: 'باب', similar: true },
+  { word1: 'كتب', word2: 'كتاب', similar: false },
+  { word1: 'ورد', word2: 'ولد', similar: false },
+
+  { word1: 'موز', word2: 'موز', similar: true },
+  { word1: 'جمل', word2: 'حمل', similar: false },
+  { word1: 'دار', word2: 'نار', similar: false },
+  { word1: 'شمس', word2: 'شمس', similar: true },
+  { word1: 'سمك', word2: 'سلم', similar: false },
+  { word1: 'بيت', word2: 'بيت', similar: true },
+  { word1: 'عين', word2: 'غين', similar: false },
+  { word1: 'قمر', word2: 'قمر', similar: true },
+  { word1: 'راس', word2: 'فاس', similar: false },
+  { word1: 'ورد', word2: 'ورد', similar: true },
+
+  { word1: 'نهر', word2: 'نهر', similar: true },
+  { word1: 'كتب', word2: 'بتك', similar: false },
+  { word1: 'ليل', word2: 'ليل', similar: true },
+  { word1: 'صوت', word2: 'سوت', similar: false },
+  { word1: 'قلم', word2: 'علم', similar: false },
+  { word1: 'بحر', word2: 'بحر', similar: true },
+  { word1: 'ذيل', word2: 'ديل', similar: false },
+  { word1: 'تفاح', word2: 'تفاح', similar: true },
+  { word1: 'سور', word2: 'نور', similar: false },
+  { word1: 'نجمة', word2: 'نجمة', similar: true },
+
+  { word1: 'طين', word2: 'تين', similar: false },
+  { word1: 'باب', word2: 'تاب', similar: false },
+  { word1: 'نجم', word2: 'نجم', similar: true },
+  { word1: 'ضوء', word2: 'دوء', similar: false },
+  { word1: 'زرافة', word2: 'زرافة', similar: true },
+  { word1: 'ظرف', word2: 'زرف', similar: false },
   ];
 
   const [current, setCurrent] = useState(0);
