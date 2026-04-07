@@ -171,10 +171,16 @@ export default function HiddenLetter() {
       <div className="w-full bg-white/60 backdrop-blur-md border-b-2 border-[#E8D4E8] p-4">
         <div className="container flex justify-between items-center">
           <div>
-            <h2 className="text-3xl font-bold text-[#2D1B3D]">ابحث عن الحرف</h2>
-            <p className="text-lg text-[#7A6B8F] font-poppins">
-              ابحث عن جميع الحروف: <span className="text-3xl font-bold">{targetLetter}</span>
-            </p>
+                    <h2 className="text-4xl font-bold text-[#2D1B3D] mb-2">
+                    ابحث عن الحرف
+                  </h2>
+
+                  <p className="text-2xl text-[#7A6B8F] font-poppins">
+                    ابحث عن جميع الحروف:
+                    <span className="ml-2 text-4xl font-extrabold text-[#FF6B6B]">
+                      {targetLetter}
+                    </span>
+          </p>
           </div>
           <div className="flex gap-6">
             <div className="bg-white rounded-2xl px-6 py-3 shadow-md border-2 border-[#FFD93D]">

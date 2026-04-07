@@ -202,10 +202,10 @@ const items = [
 // ============================================================================
 // Word Beginning Game
 // ============================================================================
-export function WordBeginningGame() {
+/*export function WordBeginningGame() {
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
-
+  
   const words = [
   { word: 'أسد', letter: 'ا' },
   { word: 'بطة', letter: 'ب' },
@@ -284,7 +284,113 @@ export function WordBeginningGame() {
     </div>
   );
 }
+*/
+export function WordBeginningGame() {
+  const [score, setScore] = useState(0);
+  const [round, setRound] = useState(0);
+  const [current, setCurrent] = useState(0);
 
+  const words = [
+    { word: 'أسد', letter: 'ا' },
+    { word: 'بطة', letter: 'ب' },
+    { word: 'تفاح', letter: 'ت' },
+    { word: 'ثعلب', letter: 'ث' },
+    { word: 'جمل', letter: 'ج' },
+    { word: 'حصان', letter: 'ح' },
+    { word: 'خبز', letter: 'خ' },
+    { word: 'دب', letter: 'د' },
+    { word: 'ذئب', letter: 'ذ' },
+    { word: 'رجل', letter: 'ر' },
+    { word: 'زرافة', letter: 'ز' },
+    { word: 'سيارة', letter: 'س' },
+    { word: 'شمس', letter: 'ش' },
+    { word: 'صندوق', letter: 'ص' },
+    { word: 'ضفدع', letter: 'ض' },
+    { word: 'طائرة', letter: 'ط' },
+    { word: 'ظل', letter: 'ظ' },
+    { word: 'عصفور', letter: 'ع' },
+    { word: 'غزال', letter: 'غ' },
+    { word: 'فراولة', letter: 'ف' },
+    { word: 'قطة', letter: 'ق' },
+    { word: 'كلب', letter: 'ك' },
+    { word: 'ليمون', letter: 'ل' },
+    { word: 'موز', letter: 'م' },
+    { word: 'نمر', letter: 'ن' },
+    { word: 'هدهد', letter: 'ه' },
+    { word: 'وردة', letter: 'و' },
+    { word: 'يمامة', letter: 'ي' },
+  ];
+
+  // مصفوفة بكل الحروف العربية لاستخدامها في الاختيارات الخاطئة
+  const allLetters = words.map(w => w.letter);
+
+  // توليد الاختيارات بشكل ديناميكي لكل سؤال
+  const options = useMemo(() => {
+    const correctLetter = words[current].letter;
+    
+    // نختار حروف عشوائية بشرط متبقاش هي الحرف الصح
+    const randomLetters = allLetters
+      .filter(l => l !== correctLetter)
+      .sort(() => 0.5 - Math.random()) // لخبطة الحروف الكل
+      .slice(0, 5); // ناخد أول 5 عشوائيين
+
+    // ندمج الصح مع العشوائي ونعمل Shuffle نهائي
+    return [...randomLetters, correctLetter].sort(() => 0.5 - Math.random());
+  }, [current]);
+
+  const handleAnswer = (letter: string) => {
+    const isCorrect = letter === words[current].letter;
+    if (isCorrect) {
+      setScore(s => s + 1);
+      // playUISound('success'); 
+    } else {
+      // playUISound('error');
+    }
+
+    const nextIndex = current + 1;
+    if (nextIndex >= words.length) {
+      setRound(r => r + 1);
+      setCurrent(0);
+    } else {
+      setCurrent(nextIndex);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] to-[#F8F3FF] p-8" dir="rtl">
+      <div className="container max-w-2xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <p className="text-lg font-bold text-[#7A6B8F]">الجولة: {round + 1}</p>
+          <h2 className="text-3xl font-bold text-[#2D1B3D]">📖 صوت بداية الكلمة</h2>
+          <p className="text-lg font-bold text-[#4ECDC4]">النقاط: {score}</p>
+        </div>
+
+        <div className="bg-white rounded-3xl p-8 shadow-lg border-4 border-[#4ECDC4] text-center">
+          <p className="text-[#7A6B8F] mb-6 text-xl">ما الحرف الأول للكلمة؟</p>
+          <p className="text-6xl font-bold text-[#2D1B3D] mb-12 tracking-wider">{words[current].word}</p>
+          
+          <div className="grid grid-cols-3 gap-4 mb-8">
+            {options.map((letter, i) => (
+              <button
+                key={`${current}-${i}`} // مفتاح فريد لضمان إعادة الـ render
+                onClick={() => handleAnswer(letter)}
+                className="py-6 bg-[#E8D4E8] text-[#2D1B3D] rounded-2xl font-bold text-3xl hover:bg-[#4ECDC4] hover:text-white transition-all transform hover:scale-105 active:scale-95 shadow-md"
+              >
+                {letter}
+              </button>
+            ))}
+          </div>
+          
+          <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+             <div className="bg-[#4ECDC4] h-2.5 rounded-full transition-all duration-500" 
+                  style={{ width: `${((current + 1) / words.length) * 100}%` }}></div>
+          </div>
+          <p className="text-sm text-[#7A6B8F]">السؤال {current + 1} من {words.length}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 // ============================================================================
 // Rhyming Words Game
 // ============================================================================
