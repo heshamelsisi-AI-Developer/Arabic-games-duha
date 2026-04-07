@@ -246,7 +246,7 @@ export function WordBeginningGame() {
     const distractors = allLetters
       .filter((letter) => letter !== correct)
       .sort(() => Math.random() - 0.5)
-      .slice(0, 3);
+      .slice(0, 5);
     setOptions([correct, ...distractors].sort(() => Math.random() - 0.5));
   }, [current]);
 
@@ -689,14 +689,9 @@ export function WordSearchGame() {
       'ه','و','ي'
     ];    
     // Add target letters multiple times
-    //const grid = [...letters, ...letters];
-    const grid = [...letters];
-    const gridSize = Math.max(12, letters.length + 4);
+    const grid = [...letters, ...letters];
+    const gridSize = Math.max(12, letters.length * 2 + 4);
     // Add random letters
-    /*while (grid.length < 12) {
-      const randomLetter = allLetters[Math.floor(Math.random() * allLetters.length)];
-      grid.push(randomLetter);
-    }*/
     while (grid.length < gridSize) {
       const randomLetter =
         allLetters[Math.floor(Math.random() * allLetters.length)];
@@ -704,8 +699,6 @@ export function WordSearchGame() {
     }
     
     // Shuffle
-    //return grid.sort(() => Math.random() - 0.5);
-    // 4. Shuffle محترم
     for (let i = grid.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [grid[i], grid[j]] = [grid[j], grid[i]];
@@ -761,8 +754,8 @@ export function WordSearchGame() {
           {/* Target Word Display */}
           <div className="mb-6 p-4 bg-[#FFD93D] rounded-xl">
             <p className="text-[#2D1B3D] font-bold mb-2">🎯 ابحث عن:</p>
-            <p className="text-4xl font-bold text-[#2D1B3D]">{targetWord}</p>
-            <p className="text-sm text-[#7A6B8F] mt-2">عدد المرات المتبقية: {3 - foundCount}</p>
+            <p className="text-6xl font-bold text-[#2D1B3D] border-4 border-white rounded-lg p-4 bg-white shadow-lg">{targetWord}</p>
+            <p className="text-sm text-[#7A6B8F] mt-2">المرات المتبقية: {3 - foundCount}</p>
           </div>
           
           <div className="grid grid-cols-4 gap-2 mb-8 font-bold text-2xl">
@@ -786,7 +779,7 @@ export function WordSearchGame() {
           >
             تحقق من الكلمة
           </button>
-          <p className="text-sm text-[#7A6B8F]">اختر {targetLength} حروف</p>
+          <p className="text-sm text-[#7A6B8F]">اختر {targetLength} حرفاً</p>
         </div>
       </div>
     </div>
@@ -799,12 +792,153 @@ export function WordSearchGame() {
 export function WordRecognitionGame() {
   const [score, setScore] = useState(0);
   const [round, setRound] = useState(0);
+  const [shuffledWords, setShuffledWords] = useState<{word: string, correct: boolean}[]>([]);
 
-  const words = ['كتاب', 'مدرسة', 'قلم', 'بيت', 'شمس', 'قمر'];
+  const words = [
+    { word: 'كتاب', correct: true },
+    { word: 'تابك', correct: false },
+    { word: 'مدرسة', correct: true },
+    { word: 'مدرسةس', correct: false },
+    { word: 'قلم', correct: true },
+    { word: 'لقم', correct: false },
+    { word: 'بيت', correct: true },
+    { word: 'تيب', correct: false },
+    { word: 'شمس', correct: true },
+    { word: 'مشمس', correct: false },
+    { word: 'قمر', correct: true },
+    { word: 'مرق', correct: false },
+    { word: 'أسد', correct: true },
+    { word: 'سأد', correct: false },
+    { word: 'فيل', correct: true },
+    { word: 'ليف', correct: false },
+    { word: 'جمل', correct: true },
+    { word: 'ملج', correct: false },
+    { word: 'أرنب', correct: true },
+    { word: 'نأرب', correct: false },
+    { word: 'بطة', correct: true },
+    { word: 'طةب', correct: false },
+    { word: 'سمك', correct: true },
+    { word: 'كسم', correct: false },
+    { word: 'طير', correct: true },
+    { word: 'ريط', correct: false },
+    { word: 'تفاح', correct: true },
+    { word: 'حتفا', correct: false },
+    { word: 'موز', correct: true },
+    { word: 'زوم', correct: false },
+    { word: 'عنب', correct: true },
+    { word: 'بنع', correct: false },
+    { word: 'خبز', correct: true },
+    { word: 'زبخ', correct: false },
+    { word: 'حليب', correct: true },
+    { word: 'بيحل', correct: false },
+    { word: 'جبن', correct: true },
+    { word: 'نجب', correct: false },
+    { word: 'ماء', correct: true },
+    { word: 'ءام', correct: false },
+    { word: 'سيارة', correct: true },
+    { word: 'رةسيا', correct: false },
+    { word: 'قطار', correct: true },
+    { word: 'رطاق', correct: false },
+    { word: 'طائرة', correct: true },
+    { word: 'رةطائ', correct: false },
+    { word: 'دراجة', correct: true },
+    { word: 'جةدار', correct: false },
+    { word: 'باب', correct: true },
+    { word: 'باب', correct: false },
+    { word: 'نافذة', correct: true },
+    { word: 'ذةفان', correct: false },
+    { word: 'غرفة', correct: true },
+    { word: 'فةغر', correct: false },
+    { word: 'سرير', correct: true },
+    { word: 'ريرس', correct: false },
+    { word: 'كرسي', correct: true },
+    { word: 'سيكر', correct: false },
+    { word: 'طاولة', correct: true },
+    { word: 'لةطاو', correct: false },
+    { word: 'شجرة', correct: true },
+    { word: 'رةشج', correct: false },
+    { word: 'زهرة', correct: true },
+    { word: 'رةزه', correct: false },
+    { word: 'وردة', correct: true },
+    { word: 'دةور', correct: false },
+    { word: 'حديقة', correct: true },
+    { word: 'قةحدي', correct: false },
+    { word: 'ليل', correct: true },
+    { word: 'ليل', correct: false },
+    { word: 'نهار', correct: true },
+    { word: 'رهان', correct: false },
+    { word: 'صباح', correct: true },
+    { word: 'حصبأ', correct: false },
+    { word: 'مساء', correct: true },
+    { word: 'ءاسم', correct: false },
+    { word: 'نجم', correct: true },
+    { word: 'مجن', correct: false },
+    { word: 'سماء', correct: true },
+    { word: 'ءامس', correct: false },
+    { word: 'بحر', correct: true },
+    { word: 'رحب', correct: false },
+    { word: 'نهر', correct: true },
+    { word: 'هرن', correct: false },
+    { word: 'صوت', correct: true },
+    { word: 'توص', correct: false },
+    { word: 'لون', correct: true },
+    { word: 'نول', correct: false },
+    { word: 'علم', correct: true },
+    { word: 'ملع', correct: false },
+    { word: 'لعب', correct: true },
+    { word: 'عبل', correct: false },
+    { word: 'دفتر', correct: true },
+    { word: 'رفدت', correct: false },
+    { word: 'سبورة', correct: true },
+    { word: 'رةسبو', correct: false },
+    { word: 'قطة', correct: true },
+    { word: 'طةق', correct: false },
+    { word: 'كلب', correct: true },
+    { word: 'بكل', correct: false },
+    { word: 'حصان', correct: true },
+    { word: 'ناحص', correct: false },
+    { word: 'غزال', correct: true },
+    { word: 'لازغ', correct: false },
+    { word: 'ذئب', correct: true },
+    { word: 'بئذ', correct: false },
+    { word: 'رجل', correct: true },
+    { word: 'لجر', correct: false },
+    { word: 'طفل', correct: true },
+    { word: 'لطف', correct: false },
+    { word: 'أم', correct: true },
+    { word: 'مأ', correct: false },
+    { word: 'أب', correct: true },
+    { word: 'بأ', correct: false },
+    { word: 'عمل', correct: true },
+    { word: 'لمع', correct: false },
+    { word: 'درس', correct: true },
+    { word: 'سرد', correct: false },
+    { word: 'نجاح', correct: true },
+    { word: 'حجان', correct: false },
+    { word: 'فشل', correct: true },
+    { word: 'لشف', correct: false },
+    { word: 'طعام', correct: true },
+    { word: 'ماطع', correct: false },
+    { word: 'شراب', correct: true },
+    { word: 'بارش', correct: false },
+    { word: 'فاكهة', correct: true },
+    { word: 'هةفاك', correct: false },
+    { word: 'صندوق', correct: true },
+    { word: 'قوصند', correct: false },
+    { word: 'مفتاح', correct: true },
+    { word: 'حافتم', correct: false },
+    { word: 'هاتف', correct: true },
+    { word: 'فتهاه', correct: false },
+  ];
   const [current, setCurrent] = useState(0);
 
+  React.useEffect(() => {
+    const shuffled = [...words].sort(() => Math.random() - 0.5);
+    setShuffledWords(shuffled);
+  }, []);
+
   const handleAnswer = (answer: boolean) => {
-    const isCorrect = answer === true;
+    const isCorrect = answer === shuffledWords[current].correct;
     if (isCorrect) {
       setScore(score + 1);
       playUISound('success');
@@ -812,13 +946,15 @@ export function WordRecognitionGame() {
       playUISound('error');
     }
     const nextIndex = current + 1;
-    if (nextIndex >= words.length) {
+    if (nextIndex >= shuffledWords.length) {
       setRound(round + 1);
       setCurrent(0);
     } else {
       setCurrent(nextIndex);
     }
   };
+
+  if (shuffledWords.length === 0) return null; // Loading
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] to-[#F8F3FF] p-8">
@@ -830,7 +966,7 @@ export function WordRecognitionGame() {
         </div>
         <div className="bg-white rounded-3xl p-8 shadow-lg border-4 border-[#B8A8FF] text-center">
           <p className="text-[#7A6B8F] mb-6">هل هذه كلمة عربية صحيحة؟</p>
-          <p className="text-5xl font-bold text-[#2D1B3D] mb-8">{words[current]}</p>
+          <p className="text-5xl font-bold text-[#2D1B3D] mb-8">{shuffledWords[current].word}</p>
           <div className="grid grid-cols-2 gap-4 mb-8">
             <button
               onClick={() => handleAnswer(true)}
@@ -845,12 +981,13 @@ export function WordRecognitionGame() {
               ✗ لا
             </button>
           </div>
-          <p className="text-sm text-[#7A6B8F]">الكلمة {current + 1} من {words.length}</p>
+          <p className="text-sm text-[#7A6B8F]">الكلمة {current + 1} من {shuffledWords.length}</p>
         </div>
       </div>
     </div>
   );
 }
+
 
 // ============================================================================
 // Placeholder Game
