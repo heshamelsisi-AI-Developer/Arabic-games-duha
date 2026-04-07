@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { playUISound } from '@/lib/audioManager';
+import { playUISound, playLetterSound } from '@/lib/audioManager';
 
 // ============================================================================
 // Letter Matching Game
@@ -149,8 +149,13 @@ const items = [
   const [options, setOptions] = useState<string[]>([]);
 
   React.useEffect(() => {
-    const shuffled = [...items].sort(() => Math.random() - 0.5).slice(0, 4);
-    setOptions(shuffled.map(i => i.letter));
+    const correct = items[current].letter;
+    const distractors = items
+      .filter(i => i.letter !== correct)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
+      .map(i => i.letter);
+    setOptions([correct, ...distractors].sort(() => Math.random() - 0.5));
   }, [current]);
 
   const handleAnswer = (letter: string) => {
@@ -179,8 +184,13 @@ const items = [
           <p className="text-lg font-bold text-[#4ECDC4]">النقاط: {score}</p>
         </div>
         <div className="bg-white rounded-3xl p-8 shadow-lg border-4 border-[#FFD93D] text-center">
-          <p className="text-[#7A6B8F] mb-6">اختر الحرف الصحيح</p>
-          <p className="text-4xl font-bold text-[#FF6B5B] mb-8">{items[current].sound}</p>
+          <p className="text-[#7A6B8F] mb-6">استمع للحرف واختره من الحروف أدناه</p>
+          <button
+            onClick={() => playLetterSound(items[current].letter)}
+            className="px-8 py-4 bg-[#FF6B5B] text-white rounded-2xl font-bold text-xl hover:shadow-lg mb-8"
+          >
+            🔊 استمع للحرف
+          </button>
           <div className="grid grid-cols-2 gap-4 mb-8">
             {options.map((letter, i) => (
               <button
@@ -677,8 +687,8 @@ export function WordSearchGame() {
   const targetLength = targetWord.length;
   
   // Generate random letters with target word letters mixed in
-  const generateGrid = () => {
-    const letters = targetWord.split('');
+  const generateGrid = (word: string) => {
+    const letters = word.split('');
     //const allLetters = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط'];
     const allLetters = [
       'ا','ب','ت','ث','ج','ح','خ',
@@ -707,7 +717,7 @@ export function WordSearchGame() {
     return grid;
   };
 
-  const [grid, setGrid] = React.useState(generateGrid());
+  const [grid, setGrid] = React.useState(generateGrid(targetWord));
 
   const handleLetterClick = (index: number) => {
     if (selectedLetters.includes(index)) {
@@ -727,14 +737,16 @@ export function WordSearchGame() {
       if (foundCount + 1 >= 3) {
         // Move to next round after finding 3 times
         setTimeout(() => {
-          setCurrentRound(currentRound + 1);
+          const newRound = currentRound + 1;
+          const newTargetWord = allWords[newRound % allWords.length];
+          setCurrentRound(newRound);
           setFoundCount(0);
           setSelectedLetters([]);
-          setGrid(generateGrid());
+          setGrid(generateGrid(newTargetWord));
         }, 800);
       } else {
         setSelectedLetters([]);
-        setGrid(generateGrid());
+        setGrid(generateGrid(targetWord));
       }
     } else {
       playUISound('error');
