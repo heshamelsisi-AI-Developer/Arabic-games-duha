@@ -319,3 +319,34 @@
         }
     }
 }
+
+@keyframes confetti-rise {
+    0% {
+        transform: translateY(0) scale(0.8) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50vh) scale(1.1) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) scale(0.9) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confetti-spark-large {
+    animation: confetti-rise 2.5s ease-out forwards;
+}
+
+.confetti-spark-medium {
+    animation: confetti-rise 2.8s ease-out forwards;
+}
+
+.confetti-spark-small {
+    animation: confetti-rise 3.2s ease-out forwards;
+}
+
+.confetti-emoji-pop {
+    animation: confetti-rise 2.6s ease-out forwards;
+}
