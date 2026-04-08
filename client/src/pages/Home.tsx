@@ -83,12 +83,12 @@ export default function Home() {
   if (currentSection === 'games') {
     return (
       <div>
-        <button
+        {/*<button
           onClick={() => setCurrentSection('landing')}
           className="fixed top-4 left-4 px-4 py-2 bg-[#B8A8FF] text-white rounded-lg font-poppins z-50"
         >
           ← رجوع
-        </button>
+        </button>*/}
         <GamesPage onBack={() => setCurrentSection('landing')} />
       </div>
     );

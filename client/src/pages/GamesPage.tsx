@@ -83,7 +83,7 @@ export default function GamesPage({ onBack }: GamesPageProps) {
         {/* Header */}
         <header className="bg-gradient-to-b from-[#F5F5DC] to-[#E8DCC8] backdrop-blur-md py-2 relative overflow-hidden">
           {/* Animated balloons and stars */}
-          <div className="pointer-events-none absolute inset-0">
+          {/*<div className="pointer-events-none absolute inset-0">
             <div className="absolute left-8 top-8 text-4xl animate-float-slow">🎈</div>
             <div className="absolute left-1/4 top-12 text-4xl animate-float-slow animation-delay-200">🌟</div>
             <div className="absolute right-16 top-16 text-4xl animate-float-slow animation-delay-400">🎉</div>
@@ -91,7 +91,7 @@ export default function GamesPage({ onBack }: GamesPageProps) {
             <div className="absolute right-8 bottom-8 text-4xl animate-float-slow animation-delay-800">✨</div>
             <div className="absolute left-1/2 bottom-12 text-4xl animate-float-slow animation-delay-1000">🎈</div>
             <div className="absolute left-16 bottom-16 text-4xl animate-float-slow animation-delay-1200">🌈</div>
-          </div>
+          </div>*/}
           <div className="container flex items-center justify-between">
             <button
               onClick={() => setSelectedGame(null)}
