@@ -86,7 +86,7 @@ export default function Landing({ onSelectSection }: LandingProps) {
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-2 text-[#8B4513]">
                   <span className="text-xl">✓</span>
-                  <span className="font-poppins">8 ألعاب مختلفة</span>
+                  <span className="font-poppins">ألعاب مختلفة</span>
                 </li>
                 <li className="flex items-center gap-2 text-[#8B4513]">
                   <span className="text-xl">✓</span>
@@ -107,13 +107,7 @@ export default function Landing({ onSelectSection }: LandingProps) {
                 ابدأ اللعب
                 <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
               </button>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="py-4 bg-gradient-to-b from-[#D2B48C] to-[#F5F5DC] text-center">
+               <footer className="py-4 bg-gradient-to-b from-[#D2B48C] to-[#F5F5DC] text-center">
         <a
           href="https://www.instagram.com/the_duha_way?igsh=MWZyaHBkejQzcGJuZg=="
           target="_blank"
@@ -125,6 +119,26 @@ export default function Landing({ onSelectSection }: LandingProps) {
         </a>
       </footer>
 
+            </div>
+          </div>
+          
+        </div>
+      </main>
+
+      {/* Footer */}
+      {/*
+      <footer className="py-4 bg-gradient-to-b from-[#D2B48C] to-[#F5F5DC] text-center">
+        <a
+          href="https://www.instagram.com/the_duha_way?igsh=MWZyaHBkejQzcGJuZg=="
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 text-[#8B4513] hover:text-[#CD853F] transition-colors"
+        >
+          <Instagram size={24} />
+          <span>تابعنا على إنستغرام</span>
+        </a>
+      </footer>
+      */}
       <style>{`
         @keyframes fade-in {
           from { opacity: 0; }
