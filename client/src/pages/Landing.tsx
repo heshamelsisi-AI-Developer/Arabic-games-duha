@@ -15,7 +15,7 @@ interface LandingProps {
 
 export default function Landing({ onSelectSection }: LandingProps) {
   return (
-    <div className="h-screen bg-gradient-to-b from-[#F5F5DC] to-[#D2B48C] flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#F5F5DC] to-[#D2B48C] flex flex-col">
       {/* Header */}
       <header className="bg-gradient-to-b from-[#F5F5DC] to-[#D2B48C] backdrop-blur-md py-8 relative overflow-visible">
         {/*<div className="pointer-events-none absolute inset-0">
