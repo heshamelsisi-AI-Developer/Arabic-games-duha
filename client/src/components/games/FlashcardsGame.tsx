@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Volume2, RotateCcw } from 'lucide-react';
+import { playUISound } from '@/lib/audioManager';
 import CelebrationConfetti from './CelebrationConfetti';
 import { ARABIC_LETTERS, getRandomLetters, ArabicLetter } from '@/lib/arabicLetters';
 
@@ -56,12 +57,14 @@ export default function FlashcardsGame() {
     if (selectedOption.letter === currentLetter?.letter) {
       setFeedback('correct');
       setScore(score + 1);
+      playUISound('success');
       // Auto-advance after 1.5 seconds
       setTimeout(() => {
         generateNewRound();
       }, 1500);
     } else {
       setFeedback('incorrect');
+      playUISound('error');
       // Auto-reset after 1 second
       setTimeout(() => {
         setSelectedLetter(null);

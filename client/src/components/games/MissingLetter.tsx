@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
+import { playUISound } from '@/lib/audioManager';
 import CelebrationConfetti from './CelebrationConfetti';
 import SadFeedback from './SadFeedback';
 
@@ -231,12 +232,14 @@ export default function MissingLetter() {
     if (letter === currentItem.correctAnswer) {
       setFeedback('correct');
       setScore(score + 1);
+      playUISound('success');
       setTimeout(() => {
         nextRound();
       }, 1500);
     } else {
       setFeedback('incorrect');
       setShowSadFeedback(true);
+      playUISound('error');
       setTimeout(() => {
         setShowSadFeedback(false);
         setTimeout(() => {

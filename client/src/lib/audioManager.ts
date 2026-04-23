@@ -185,11 +185,24 @@ const playWordSoundWebSpeech = (word: string, rate: number = 0.8): void => {
 
 /**
  * Play a UI sound using Web Audio API
- * @param soundType - Type of UI sound: 'buttonClick', 'success', 'error', 'cardFlip'
+ * @param soundType - Type of UI sound: 'buttonClick', 'success', 'error', 'cardFlip', 'cheer'
  */
-const playUISoundWebAudio = (soundType: string): void => {
+let sharedAudioContext: AudioContext | null = null;
+
+const getAudioContext = (): AudioContext => {
+  if (!sharedAudioContext) {
+    sharedAudioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+  }
+  return sharedAudioContext;
+};
+
+const playUISoundWebAudio = async (soundType: string): Promise<void> => {
   try {
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const audioContext = getAudioContext();
+    if (audioContext.state === 'suspended') {
+      await audioContext.resume();
+    }
+
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
 
@@ -212,6 +225,14 @@ const playUISoundWebAudio = (soundType: string): void => {
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
         oscillator.start(audioContext.currentTime);
         oscillator.stop(audioContext.currentTime + 0.2);
+        break;
+
+      case 'cheer':
+        oscillator.frequency.value = 1600;
+        gainNode.gain.setValueAtTime(0.35, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.25);
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.25);
         break;
 
       case 'error':

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Volume2, RotateCcw } from 'lucide-react';
+import { playUISound } from '@/lib/audioManager';
 import CelebrationConfetti from './CelebrationConfetti';
 
 interface GameItem {
@@ -359,11 +360,13 @@ export default function SoundPictureMatch() {
     if (option.isCorrect) {
       setFeedback('correct');
       setScore(score + 1);
+      playUISound('success');
       setTimeout(() => {
         nextRound();
       }, 1500);
     } else {
       setFeedback('incorrect');
+      playUISound('error');
       setTimeout(() => {
         setSelectedImage(null);
         setFeedback(null);

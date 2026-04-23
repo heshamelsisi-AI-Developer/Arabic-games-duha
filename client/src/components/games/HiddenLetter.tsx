@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { RotateCcw } from 'lucide-react';
+import { playUISound } from '@/lib/audioManager';
 import CelebrationConfetti from './CelebrationConfetti';
 
 interface LetterPosition {
@@ -140,6 +141,7 @@ export default function HiddenLetter() {
       setFoundCount(foundCount + 1);
       setScore(score + 10);
       setShowSuccess(true);
+      playUISound('success');
       setTimeout(() => {
         setShowSuccess(false);
       }, 1000);
@@ -149,6 +151,7 @@ export default function HiddenLetter() {
       }
     } else {
       setShowError(true);
+      playUISound('error');
       setTimeout(() => {
         setShowError(false);
       }, 1500);

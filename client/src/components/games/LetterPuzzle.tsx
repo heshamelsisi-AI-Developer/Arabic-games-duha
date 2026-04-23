@@ -137,11 +137,11 @@ export default function LetterPuzzle() {
     if (answer === currentPuzzle?.correctAnswer) {
       setFeedback('correct');
       setScore(score + 1);
-      playUISound('buttonClick');
+      playUISound('success');
       setTimeout(() => generatePuzzle(), 1500);
     } else {
       setFeedback('wrong');
-      playUISound('cardFlip');
+      playUISound('error');
       setTimeout(() => generatePuzzle(), 1500);
     }
   };
