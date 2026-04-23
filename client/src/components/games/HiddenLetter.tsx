@@ -69,6 +69,8 @@ export default function HiddenLetter() {
   const [foundCount, setFoundCount] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [gameActive, setGameActive] = useState(true);
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const currentRound = GAME_ROUNDS[currentRoundIndex];
   const targetLetter = currentRound.targetLetter;
@@ -137,11 +139,19 @@ export default function HiddenLetter() {
       clickedLetter.found = true;
       setFoundCount(foundCount + 1);
       setScore(score + 10);
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 1000);
 
-      // Check if all targets found
       if (foundCount + 1 === totalTargets) {
         setGameActive(false);
       }
+    } else {
+      setShowError(true);
+      setTimeout(() => {
+        setShowError(false);
+      }, 1500);
     }
 
     setLetters(newLetters);
@@ -168,21 +178,20 @@ export default function HiddenLetter() {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen gap-4">
-      {isRoundComplete && <CelebrationConfetti />}
+      {isRoundComplete && <div className="fixed inset-0 z-50 pointer-events-none"><CelebrationConfetti /></div>}
       {/* Header */}
       <div className="w-full bg-white/60 backdrop-blur-md border-b-2 border-[#E8D4E8] p-4">
-        <div className="container flex justify-between items-center">
-          <div>
-                    <h2 className="text-4xl font-bold text-[#2D1B3D] mb-2">
-                    ابحث عن الحرف
-                  </h2>
-
-                  <p className="text-2xl text-[#7A6B8F] font-poppins">
-                    ابحث عن جميع الحروف:
-                    <span className="ml-2 text-4xl font-extrabold text-[#FF6B6B]">
-                      {targetLetter}
-                    </span>
-          </p>
+        <div className="container flex justify-center items-center flex-wrap gap-8">
+          <div className="flex flex-col items-center">
+            <p className="text-xl text-[#2D1B3D] font-bold mb-2">
+              ابحث عن الحرف
+            </p>
+            <p className="text-lg text-[#7A6B8F] font-poppins mb-2">
+              ابحث عن جميع اماكن حرف 
+            </p>
+            <div className="text-4xl font-extrabold text-[#FF6B5B] bg-white border-3 border-[#FF6B5B] rounded-full w-16 h-16 flex items-center justify-center shadow-lg">
+              {targetLetter}
+            </div>
           </div>
           <div className="flex gap-6">
             <div className="bg-white rounded-2xl px-6 py-3 shadow-md border-2 border-[#FFD93D]">
@@ -229,6 +238,28 @@ export default function HiddenLetter() {
           </button>
         ))}
 
+        {/* Success Message */}
+        {showSuccess && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-30 pointer-events-none">
+            <div className="text-6xl animate-bounce">😊</div>
+            <div className="bg-white/95 rounded-2xl p-6 text-center shadow-2xl">
+              <h3 className="text-2xl font-bold text-[#32CD32] mb-2">احسنت ياصغيري!</h3>
+              <p className="text-lg text-[#7A6B8F] font-poppins">كمل</p>
+            </div>
+          </div>
+        )}
+
+        {/* Error Message */}
+        {showError && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-20 pointer-events-none">
+            <div className="text-6xl animate-bounce">😢</div>
+            <div className="bg-white/95 rounded-2xl p-6 text-center shadow-2xl">
+              <h3 className="text-2xl font-bold text-[#FF6B5B] mb-2">اخترت غلط!</h3>
+              <p className="text-lg text-[#7A6B8F] font-poppins">حاول مرة أخرى</p>
+            </div>
+          </div>
+        )}
+
         {/* Game Over Overlay */}
         {!gameActive && (
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex flex-col items-center justify-center gap-6">
@@ -243,11 +274,12 @@ export default function HiddenLetter() {
                 </>
               ) : (
                 <>
-                  <div className="text-6xl mb-4">⏰</div>
+                  <div className="text-6xl mb-4">😢</div>
                   <h3 className="text-3xl font-bold text-white mb-2">انتهى الوقت!</h3>
-                  <p className="text-lg text-white font-poppins">
+                  <p className="text-lg text-white font-poppins mb-2">
                     وجدت {foundCount} من {totalTargets}
                   </p>
+                  <p className="text-lg text-white font-poppins">حاول مرة أخرى</p>
                 </>
               )}
             </div>

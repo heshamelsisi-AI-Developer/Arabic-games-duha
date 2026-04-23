@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { playUISound } from '@/lib/audioManager';
+import CelebrationConfetti from './CelebrationConfetti';
 
 // ============================================================================
 // Game 1: Sound Start - صوت بداية الكلمة
@@ -98,13 +99,14 @@ const words = [
 
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
+    const [showConfetti, setShowConfetti] = useState(false);
 
-  const playWord = () => {
+ /* const playWord = () => {
     const utterance = new SpeechSynthesisUtterance(words[current].word);
     utterance.lang = 'ar-SA';
     window.speechSynthesis.speak(utterance);
   };
-
+  
   const handleAnswer = (answer: string) => {
     if (answer === words[current].sound) {
       setScore(score + 1);
@@ -117,6 +119,7 @@ const words = [
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] to-[#F8F3FF] p-8">
+
       <div className="container max-w-2xl">
         <h2 className="text-3xl font-bold text-[#2D1B3D] text-center mb-8">🔊 صوت بداية الكلمة</h2>
         <div className="bg-white rounded-3xl p-8 shadow-lg border-4 border-[#4ECDC4] text-center mb-8">
@@ -142,6 +145,68 @@ const words = [
         </div>
       </div>
     </div>
+  );*/
+    const playWord = () => {
+    const utterance = new SpeechSynthesisUtterance(words[current].word);
+    utterance.lang = 'ar-SA';
+    window.speechSynthesis.speak(utterance);
+  };
+   const handleAnswer = (answer: string) => {
+    if (answer === words[current].sound) {
+      setScore(score + 1);
+
+      // 🎉 شغل الاحتفال
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 2500);
+    }
+
+    setCurrent((current + 1) % words.length);
+  };
+   return (
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-[#FFF8F0] to-[#F8F3FF] p-8 relative overflow-hidden">
+
+        {/* 🎉 Confetti */}
+        {showConfetti && <CelebrationConfetti />}
+
+        <div className="container max-w-2xl">
+          <h2 className="text-3xl font-bold text-[#2D1B3D] text-center mb-8">
+            🔊 صوت بداية الكلمة
+          </h2>
+
+          <div className="bg-white rounded-3xl p-8 shadow-lg border-4 border-[#4ECDC4] text-center mb-8">
+            <button
+              onClick={playWord}
+              className="px-8 py-4 bg-[#FF6B5B] text-white rounded-2xl font-bold mb-6"
+            >
+              🔊 استمع للكلمة
+            </button>
+
+            <p className="text-[#7A6B8F] mb-6">
+              اختر الحرف الذي تبدأ به الكلمة
+            </p>
+
+            <div className="grid grid-cols-4 gap-3">
+              {['ا','ب','ت','ث','ج','ح','خ','د','م','ق'].map(letter => (
+                <button
+                  key={letter}
+                  onClick={() => handleAnswer(letter)}
+                  className="py-4 bg-[#4ECDC4] text-white rounded-xl font-bold text-2xl hover:shadow-lg"
+                >
+                  {letter}
+                </button>
+              ))}
+            </div>
+
+            <p className="text-2xl font-bold text-[#4ECDC4] mt-8">
+              النقاط: {score}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      
+    </>
   );
 }
 
